@@ -1,48 +1,54 @@
-// Tự động hóa Scroll Reveal (Xuất hiện khi cuộn)
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('active'); }
     });
 }, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(section => { observer.observe(section); });
 
-document.querySelectorAll('.reveal').forEach(section => {
-    observer.observe(section);
-});
-
-// ==========================================
-// THÊM/SỬA DỰ ÁN Ở ĐÂY (Tự động cập nhật Web)
-// ==========================================
+// Dữ liệu đã khớp với tên file ảnh thực tế của bạn trên GitHub
 const portfolioData = [
     {
-        title: "Chiến dịch Mỹ phẩm Cok'lear",
-        format: "Video Content & Plan",
-        role: "Content Marketing",
-        description: "Lên kế hoạch nội dung tuần và kịch bản video ngắn bắt trend, tối ưu chuyển đổi trực tiếp.",
-        type: "image", // Điền 'video' nếu dùng file .mp4
-        src: "assets/coklear-demo.jpg" // Đổi tên file tương ứng trong thư mục assets
+        title: "Banner Rising Stars GoldMax",
+        format: "Thiết kế Social",
+        role: "Design & Content",
+        description: "Key visual chiến dịch ưu đãi, tối ưu tỷ lệ nhấp (CTR).",
+        type: "image",
+        src: "assets/rising-stars.png" 
     },
     {
-        title: "Banner GoldMax English",
-        format: "Thiết kế Social",
+        title: "Promotion Campaign",
+        format: "Social Post",
         role: "Trưởng phòng Truyền thông",
-        description: "Thiết kế visual chương trình ưu đãi khùng, tập trung vào CTA và độ nhận diện thương hiệu.",
+        description: "Thiết kế ấn phẩm truyền thông cho chương trình khuyến mãi.",
         type: "image",
-        src: "assets/banner-goldmax.jpg"
+        src: "assets/promo.png"
+    },
+    {
+        title: "Event Recap",
+        format: "Truyền thông sự kiện",
+        role: "Điều phối & Edit",
+        description: "Tổng hợp hình ảnh nổi bật sau sự kiện thực tế.",
+        type: "image",
+        src: "assets/event-recap.png"
+    },
+    {
+        title: "Vocabulary Design",
+        format: "Content Giáo dục",
+        role: "Biên tập & Design",
+        description: "Trực quan hóa từ vựng tiếng Anh sinh động.",
+        type: "image",
+        src: "assets/vocabulary.png"
     }
 ];
 
-// Logic tự động render Carousel
 const track = document.getElementById('carousel-track');
 const dotsContainer = document.getElementById('dots-container');
 
 portfolioData.forEach((item, index) => {
-    // Tạo Slide
     const slide = document.createElement('div');
     slide.className = 'slide';
     const mediaHtml = item.type === 'video' 
-        ? `<video src="${item.src}" autoplay muted loop playsinline></video>`
+        ? `<video src="${item.src}" controls muted playsinline></video>`
         : `<img src="${item.src}" alt="${item.title}">`;
 
     slide.innerHTML = `
@@ -56,14 +62,12 @@ portfolioData.forEach((item, index) => {
     `;
     track.appendChild(slide);
 
-    // Tạo Dot
     const dot = document.createElement('div');
     dot.className = index === 0 ? 'dot active' : 'dot';
     dot.onclick = () => goToSlide(index);
     dotsContainer.appendChild(dot);
 });
 
-// Chuyển động Slider
 let currentSlide = 0;
 function goToSlide(index) {
     currentSlide = index;
