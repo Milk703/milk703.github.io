@@ -1,112 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PHAN NHẬT TUẤN — Content Marketing | Content Creator | Social Media</title>
-<meta name="description" content="Portfolio của Phan Nhật Tuấn — Content Marketing, Content Creator, Social Media, Video & Design.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#fbfaf7;--surface:#fff;--ink:#17191d;--muted:#68707b;--line:#e8e2d8;--red:#ad2025;--red2:#8f171c;--gold:#bf9140;--cream:#f7f0e5;--soft:#f8f5ef;--shadow:0 22px 60px rgba(48,37,25,.08);--r:24px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#fbfaf7 0,#fdfcf9 46%,#f9f6ef 100%);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.6}a{text-decoration:none;color:inherit}.wrap{width:min(1180px,92vw);margin:auto}
-.topbar{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,226,216,.8)}.nav{height:68px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:800;letter-spacing:.12em;font-size:13px}.navlinks{display:flex;gap:22px;color:#6b7077;font-size:13px}.navlinks a{transition:color .25s ease}.navlinks a:hover{color:var(--red)}
-section{padding:62px 0;scroll-margin-top:76px}.hero{padding:76px 0 64px;display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center}.eyebrow,.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--red)}h1,h2{font-family:Manrope,Inter,sans-serif}.hero h1{font-size:clamp(46px,7vw,80px);line-height:1.01;letter-spacing:-.045em;margin:12px 0 18px}.accent{color:var(--red)}.lead{max-width:700px;font-size:17px;color:#515861;margin:0}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 17px;border-radius:999px;border:1px solid #ddd6ca;font-size:13px;font-weight:800;background:#fff;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(50,35,20,.08)}.btn.primary{background:var(--red);border-color:var(--red);color:#fff}.btn.primary:hover{background:var(--red2)}
-.hero-art{position:relative;animation:floatIn .9s ease both}.hero-art img{width:100%;display:block;border-radius:28px;box-shadow:var(--shadow);border:1px solid #ece5da;transition:transform .5s ease,box-shadow .5s ease}.hero-art:hover img{transform:translateY(-6px) rotate(.2deg);box-shadow:0 26px 70px rgba(48,37,25,.12)}.hero-tag{position:absolute;left:20px;bottom:18px;background:rgba(255,255,255,.95);padding:10px 14px;border-radius:14px;font-size:12px;font-weight:800;box-shadow:0 12px 30px rgba(0,0,0,.1)}
-.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:26px}.head h2{font-size:38px;line-height:1.08;margin:0;letter-spacing:-.03em}.head p{max-width:560px;color:var(--muted);font-size:14px;margin:0}
-.about{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}.about-card,.service,.social-card,.work-card,.yt-card,.timeline,.toolbox,.contact-card{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}.about-card{padding:30px}.about-card p{margin:0;color:#4b515a;font-size:15px}.mini{display:grid;grid-template-columns:1fr 1fr;gap:12px}.service{padding:18px;display:flex;gap:12px;align-items:center;min-height:96px;transition:transform .28s ease,box-shadow .28s ease}.service:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(50,35,20,.1)}.service-icon{width:54px;height:54px;flex:0 0 54px;border-radius:16px;overflow:hidden;background:var(--cream);border:1px solid #eadcca}.service-icon img{width:100%;height:100%;display:block}.service h3{margin:0 0 4px;font-size:15px}.service p{margin:0;color:var(--muted);font-size:12px}
-.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.social-card{padding:22px;transition:transform .28s ease,box-shadow .28s ease}.social-card:hover{transform:translateY(-5px);box-shadow:0 22px 45px rgba(50,35,20,.11)}.social-top{display:flex;justify-content:space-between;align-items:center}.pill{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--red);font-weight:800;background:#fbe9e9;padding:6px 9px;border-radius:999px}.social-card h3{margin:16px 0 4px;font-size:18px}.social-card p{margin:0;color:var(--muted);font-size:13px}.view{display:inline-block;margin-top:14px;color:var(--red);font-size:12px;font-weight:800}
-.work-shell{position:relative}.work-viewport{overflow:hidden;border-radius:26px}.work-track{display:flex;transition:transform .5s cubic-bezier(.22,.61,.36,1)}.work-slide{min-width:100%;padding:2px}.work-card{overflow:hidden}.work-img{width:100%;display:block;aspect-ratio:16/8.5;object-fit:cover;background:#efe8dc}.work-body{padding:22px}.work-body h3{font-size:20px;margin:10px 0 7px}.work-body p{font-size:13px;color:var(--muted);margin:0;max-width:860px}.role{display:flex;gap:9px;align-items:flex-start;margin-top:13px;padding-top:13px;border-top:1px solid var(--line);font-size:12px;color:#424850}.role strong{color:var(--red);white-space:nowrap}.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid #ded5c8;background:rgba(255,255,255,.94);box-shadow:0 10px 28px rgba(50,35,20,.12);cursor:pointer;font-size:20px;z-index:2;transition:transform .25s ease,background .25s ease}.carousel-btn:hover{transform:translateY(-50%) scale(1.06);background:#fff}.carousel-btn.prev{left:-18px}.carousel-btn.next{right:-18px}.carousel-dots{display:flex;justify-content:center;gap:7px;margin-top:15px}.dot{width:7px;height:7px;border-radius:50%;border:0;background:#d2c8bb;padding:0;cursor:pointer}.dot.active{background:var(--red);transform:scale(1.25)}.work-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}.work-tools p{margin:0;color:var(--muted);font-size:12px}.work-tools input{display:none}
-.yt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.yt-card{overflow:hidden}.yt-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#eee}.yt-body{padding:20px}.yt-body h3{font-size:20px;margin:8px 0}.yt-body p{margin:0;color:var(--muted);font-size:13px}.yt-btn{display:inline-flex;margin-top:15px;padding:10px 14px;border-radius:999px;background:#f8ecec;color:var(--red);font-size:12px;font-weight:800}
-.plan{display:grid;grid-template-columns:1fr 1fr;gap:18px}.timeline{padding:8px 24px}.step{display:grid;grid-template-columns:60px 1fr 54px;gap:16px;padding:18px 0;border-top:1px solid var(--line);align-items:center;transition:transform .25s ease}.step:first-child{border-top:0}.step:hover{transform:translateX(3px)}.num{font-weight:800;color:var(--red);font-size:12px}.step strong{font-size:15px}.step span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.step-art{width:54px;height:54px;border-radius:16px;overflow:hidden;border:1px solid #eadcca;background:var(--cream)}.step-art img{width:100%;height:100%;display:block}
-.toolbox{padding:22px;background:var(--cream);border-color:#eadfce}.toolbox h3{margin:0 0 7px;font-size:17px}.toolbox p{margin:0;color:#676157;font-size:13px}.custom-panel{margin-top:20px;padding:18px;border-radius:20px;border:1px dashed #d9cdbb;background:#fffdf9;display:none}.custom-panel.open{display:block;animation:fadeUp .4s ease}.custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:800;color:#6f675d;text-transform:uppercase;letter-spacing:.08em}.field input,.field textarea{font:inherit;border:1px solid #ded6ca;border-radius:12px;padding:10px 12px;background:#fff}.field textarea{min-height:90px;resize:vertical}.custom-note{font-size:11px;color:#81786d;margin:12px 0 0}
-.contact{padding:54px 0 82px}.contact-card{padding:30px;display:flex;justify-content:space-between;gap:28px;align-items:center}.contact-card h2{font-size:38px;margin:6px 0}.contact-card p{margin:0;color:var(--muted);font-size:13px}.contact-links{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.contact-links a{background:#faf7f1}.contact-details{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.contact-detail{padding:8px 11px;border-radius:999px;background:#f8f4ec;border:1px solid var(--line);font-size:12px;color:#545a62}
-footer{padding:20px 0 46px;color:#8a8e94;font-size:11px;border-top:1px solid var(--line)}.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.in{opacity:1;transform:none}@keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media(max-width:920px){.hero,.about,.plan{grid-template-columns:1fr}.social-grid{grid-template-columns:1fr 1fr}.yt-grid{grid-template-columns:1fr}.contact-card{flex-direction:column;align-items:flex-start}.contact-links{justify-content:flex-start}.head{align-items:flex-start;flex-direction:column}.carousel-btn.prev{left:8px}.carousel-btn.next{right:8px}}
-@media(max-width:620px){.navlinks{display:none}.hero{padding-top:48px}.social-grid,.mini,.custom-grid{grid-template-columns:1fr}.head h2{font-size:32px}.contact-card h2{font-size:32px}.step{grid-template-columns:46px 1fr 46px}.step-art{width:46px;height:46px}.work-tools{align-items:flex-start;flex-direction:column}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phan Nhật Tuấn - Content Marketing Portfolio</title>
+    <!-- Nhúng Font Inter & Manrope -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topbar"><div class="wrap nav"><div class="logo">PHAN NHẬT TUẤN</div><nav class="navlinks"><a href="#about">Giới thiệu</a><a href="#social">Social</a><a href="#work">Thiết kế</a><a href="#youtube">YouTube</a><a href="#workflow">Workflow</a><a href="#contact">Liên hệ</a></nav></div></header>
 
-<main>
-<section class="wrap hero">
-  <div>
-    <div class="eyebrow">Content Marketing · Content Creator · Social Media</div>
-    <h1>Biến ý tưởng thành<br><span class="accent">nội dung thu hút.</span></h1>
-    <p class="lead">PHAN NHẬT TUẤN — 4+ năm làm Content, Social Media, Video Editing và Design. Tập trung vào nội dung trực quan, video YouTube/short-form và các ấn phẩm truyền thông có bố cục nhất quán.</p>
-    <div class="hero-actions"><a class="btn primary" href="#work">Xem thiết kế</a><a class="btn" href="#youtube">Xem YouTube</a><a class="btn" href="#contact">Liên hệ</a></div>
-  </div>
-  <div class="hero-art"><img src="assets/rising-stars.png" alt="Thiết kế cuộc thi Rising Stars - GoldMax English"><div class="hero-tag">Social Creative · Rising Stars</div></div>
-</section>
+    <!-- Hero Section -->
+    <section class="reveal" style="text-align: center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Biến ý tưởng thành <br><span class="highlight">nội dung thu hút.</span></h1>
+        <p style="font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto;">PHAN NHẬT TUẤN | Content Marketing | Video Editor <br> Ứng dụng tư duy AI-first để tối ưu hóa quy trình sáng tạo đa nền tảng.</p>
+    </section>
 
-<section id="about" class="reveal"><div class="wrap"><div class="head"><div><div class="kicker">01 / Giới thiệu</div><h2>Content + Social + Video + Design</h2></div><p>Kết hợp tư duy nội dung với khả năng xử lý hình ảnh và video để triển khai nội dung đồng bộ trên nhiều kênh.</p></div>
-  <div class="about"><div class="about-card"><p>Tôi có kinh nghiệm xây dựng nội dung Facebook, YouTube và Social Media; từ lên ý tưởng, lập kế hoạch, viết nội dung, xây dựng kịch bản đến thiết kế và biên tập video. Trong quá trình làm việc, tôi chú trọng tính nhất quán về hình ảnh, thông điệp và cách trình bày.</p></div>
-  <div class="mini"><div class="service"><div class="service-icon"><img src="assets/about-content.svg" alt=""></div><div><h3>Content & Social</h3><p>Lập kế hoạch tuần/tháng, viết và triển khai nội dung.</p></div></div><div class="service"><div class="service-icon"><img src="assets/about-video.svg" alt=""></div><div><h3>Video Content</h3><p>Ý tưởng, kịch bản, dựng video YouTube & short-form.</p></div></div><div class="service"><div class="service-icon"><img src="assets/about-design.svg" alt=""></div><div><h3>Design</h3><p>Banner, thumbnail, social post và ấn phẩm truyền thông.</p></div></div><div class="service"><div class="service-icon"><img src="assets/about-ai.svg" alt=""></div><div><h3>AI hỗ trợ</h3><p>Research, phát triển ý tưởng và tối ưu workflow.</p></div></div></div></div>
-</div></section>
+    <!-- Phần 01: Giới thiệu -->
+    <section class="reveal">
+        <h2 class="section-title">01 Giới thiệu</h2>
+        <div class="grid-4">
+            <div class="card hover-lift">
+                <div class="icon-square">📱</div>
+                <h4>Content & Social</h4>
+                <p>Lên kế hoạch nội dung, viết bài, quản trị hệ thống fanpage và TikTok.</p>
+            </div>
+            <div class="card hover-lift">
+                <div class="icon-square">🎬</div>
+                <h4>Video Content</h4>
+                <p>Kịch bản, quay dựng video ngắn tốc độ cao bắt trend thị trường.</p>
+            </div>
+            <div class="card hover-lift">
+                <div class="icon-square">🎨</div>
+                <h4>Design</h4>
+                <p>Thiết kế banner, thumbnail chuẩn nhận diện thương hiệu.</p>
+            </div>
+            <div class="card hover-lift">
+                <div class="icon-square">🤖</div>
+                <h4>AI & Content</h4>
+                <p>Ứng dụng AI phân tích insight, viết hook và tự động hóa quy trình.</p>
+            </div>
+        </div>
+    </section>
 
-<section id="social" class="reveal"><div class="wrap"><div class="head"><div><div class="kicker">02 / Social Media</div><h2>Kênh đã triển khai</h2></div><p>Ba kênh Facebook thuộc hệ thống GoldMax mà tôi đã tham gia triển khai nội dung và truyền thông.</p></div>
-<div class="social-grid">
-<a class="social-card" href="https://www.facebook.com/anhngugoldmax" target="_blank" rel="noopener"><div class="social-top"><span class="pill">Facebook</span><span>↗</span></div><h3>Anh Ngữ GoldMax</h3><p>Content · Social · Visual</p><span class="view">Mở kênh →</span></a>
-<a class="social-card" href="https://www.facebook.com/profile.php?id=61555176887133" target="_blank" rel="noopener"><div class="social-top"><span class="pill">Facebook</span><span>↗</span></div><h3>GoldMax Facebook</h3><p>Content · Social · Visual</p><span class="view">Mở kênh →</span></a>
-<a class="social-card" href="https://www.facebook.com/profile.php?id=61573202585781" target="_blank" rel="noopener"><div class="social-top"><span class="pill">Facebook</span><span>↗</span></div><h3>GoldMax Facebook</h3><p>Content · Social · Visual</p><span class="view">Mở kênh →</span></a>
-</div></div></section>
+    <!-- Phần 03: Selected Work (Tự động tải từ file script.js) -->
+    <section class="reveal">
+        <h2 class="section-title">03 Dự án nổi bật</h2>
+        <div class="carousel-wrapper hover-lift">
+            <button class="carousel-btn prev-btn" id="prev-btn">❮</button>
+            <div class="carousel-track" id="carousel-track">
+                <!-- Dữ liệu JS sẽ tự động đổ vào đây -->
+            </div>
+            <button class="carousel-btn next-btn" id="next-btn">❯</button>
+        </div>
+        <div class="dots" id="dots-container"></div>
+    </section>
 
-<section id="work" class="reveal"><div class="wrap"><div class="head"><div><div class="kicker">03 / Thiết kế & Social Creative</div><h2>Selected Work</h2></div><p>Mỗi thiết kế thể hiện một dạng công việc khác nhau: campaign, promotion, recap và nội dung giáo dục.</p></div>
-<div class="work-shell"><button class="carousel-btn prev" type="button" aria-label="Tác phẩm trước">‹</button><div class="work-viewport"><div class="work-track" id="workTrack">
-<div class="work-slide"><article class="work-card"><img class="work-img" src="assets/rising-stars.png" alt="Rising Stars social creative"><div class="work-body"><span class="pill">Campaign Creative</span><h3>Rising Stars — Cuộc thi thuyết trình</h3><p>Thiết kế key visual cho nội dung truyền thông, ưu tiên nhận diện chương trình và nổi bật hình ảnh học viên.</p><div class="role"><strong>Vai trò</strong><span>Thiết kế bố cục, typography, màu sắc, xử lý hình ảnh và hoàn thiện visual cho bài đăng Social.</span></div></div></article></div>
-<div class="work-slide"><article class="work-card"><img class="work-img" src="assets/promo.png" alt="Ưu đãi khóa học GoldMax English"><div class="work-body"><span class="pill">Promotion</span><h3>Ưu đãi khóa học</h3><p>Creative truyền thông chương trình ưu đãi với thông tin chính được tổ chức theo thứ bậc rõ ràng.</p><div class="role"><strong>Vai trò</strong><span>Thiết kế nội dung khuyến mãi, xử lý hierarchy, offer, thời gian chương trình và CTA.</span></div></div></article></div>
-<div class="work-slide"><article class="work-card"><img class="work-img" src="assets/event-recap.png" alt="Album recap hoạt động GoldMax English"><div class="work-body"><span class="pill">Event Content</span><h3>Recap hoạt động & sự kiện</h3><p>Biên tập hình ảnh theo dạng collage để kể lại không khí và khoảnh khắc nổi bật của chương trình.</p><div class="role"><strong>Vai trò</strong><span>Chọn và xử lý ảnh, bố cục collage, cân bằng màu sắc và trình bày nội dung recap.</span></div></div></article></div>
-<div class="work-slide"><article class="work-card"><img class="work-img" src="assets/vocabulary.png" alt="Series từ vựng theo chủ đề"><div class="work-body"><span class="pill">Educational Content</span><h3>Series từ vựng theo chủ đề</h3><p>Thiết kế chuỗi nội dung kiến thức tiếng Anh với layout thống nhất, dễ đọc trên Social.</p><div class="role"><strong>Vai trò</strong><span>Xây dựng layout series, tổ chức nội dung từ vựng/câu mẫu và xử lý visual đồng bộ.</span></div></div></article></div>
-<div id="customSlides"></div>
-</div></div><button class="carousel-btn next" type="button" aria-label="Tác phẩm tiếp theo">›</button></div>
-<div class="carousel-dots" id="workDots"></div>
-<div class="work-tools"><p>Thêm tác phẩm mới từ máy tính; mục mới sẽ được lưu trên trình duyệt này.</p><label class="btn" for="addWork">＋ Thêm tác phẩm</label><input id="addWork" type="file" accept="image/*,video/*"></div>
-<div class="custom-panel" id="customPanel"><div class="custom-grid"><div class="field"><label>Tên tác phẩm</label><input id="workTitle" placeholder="Ví dụ: Social post sản phẩm"></div><div class="field"><label>Định dạng</label><input id="workType" placeholder="Social Creative / Video / Thumbnail"></div><div class="field full"><label>Mô tả</label><textarea id="workDesc" placeholder="Mô tả ngắn về nội dung và mục tiêu của tác phẩm..."></textarea></div><div class="field full"><label>Vai trò</label><textarea id="workRole" placeholder="Ví dụ: Lên ý tưởng, thiết kế visual, chỉnh sửa video..."></textarea></div></div><div class="btnrow" style="margin-top:12px"><button class="btn primary" id="saveWork" type="button">Lưu tác phẩm</button><button class="btn" id="cancelWork" type="button">Hủy</button></div><p class="custom-note">Tác phẩm tự thêm được lưu bằng trình duyệt trên thiết bị này.</p></div>
-</div></section>
+    <!-- Phần 05: Workflow -->
+    <section class="reveal">
+        <h2 class="section-title">05 Quy trình làm việc</h2>
+        <div class="grid-5">
+            <div class="card hover-lift"><div class="icon-square">🔍</div><h4>Research</h4><p>Phân tích insight & thị trường</p></div>
+            <div class="card hover-lift"><div class="icon-square">💡</div><h4>Idea & Hook</h4><p>Định hướng thông điệp</p></div>
+            <div class="card hover-lift"><div class="icon-square">📝</div><h4>Script</h4><p>Lên kịch bản chi tiết</p></div>
+            <div class="card hover-lift"><div class="icon-square">✂️</div><h4>Design / Edit</h4><p>Sản xuất hình ảnh/video</p></div>
+            <div class="card hover-lift"><div class="icon-square">✅</div><h4>Publish</h4><p>Rà soát, đăng tải & đo lường</p></div>
+        </div>
+    </section>
 
-<section id="youtube" class="reveal"><div class="wrap"><div class="head"><div><div class="kicker">04 / YouTube & Video</div><h2>Video Content</h2></div><p>Nội dung YouTube kết hợp giữa hình ảnh, cấu trúc nội dung và biên tập video để truyền tải chủ đề rõ ràng.</p></div>
-<div class="yt-grid">
-<a class="yt-card" href="https://youtu.be/bR__oJ1_Gy4?si=9GbUAiC10fqf2UTc" target="_blank" rel="noopener"><img class="yt-thumb" src="https://img.youtube.com/vi/bR__oJ1_Gy4/maxresdefault.jpg" alt="YouTube video nổi bật 1"><div class="yt-body"><span class="pill">Video 01</span><h3>GoldMax English — Featured Video</h3><p>Ý tưởng · biên tập · hoàn thiện nội dung video theo phạm vi công việc thực tế.</p><span class="yt-btn">Xem video ↗</span></div></a>
-<a class="yt-card" href="https://youtu.be/5GAV1rVqRbE?si=Bym8k9q47JPWM9IR" target="_blank" rel="noopener"><img class="yt-thumb" src="https://img.youtube.com/vi/5GAV1rVqRbE/maxresdefault.jpg" alt="YouTube video nổi bật 2"><div class="yt-body"><span class="pill">Video 02</span><h3>GoldMax English — Featured Video</h3><p>Biên tập nội dung và xử lý hình ảnh/video theo định hướng truyền thông của kênh.</p><span class="yt-btn">Xem video ↗</span></div></a>
-</div>
-<div style="height:18px"></div><div class="social-grid">
-<a class="social-card" href="https://www.youtube.com/@anhngugoldmax4920" target="_blank" rel="noopener"><div class="social-top"><span class="pill">YouTube</span><span>↗</span></div><h3>GoldMax English</h3><p>Channel · Video Content</p><span class="view">Mở kênh →</span></a>
-<a class="social-card" href="https://www.youtube.com/@AnhNg%E1%BB%AFGoldMaxB%E1%BA%AFcGiang" target="_blank" rel="noopener"><div class="social-top"><span class="pill">YouTube</span><span>↗</span></div><h3>GoldMax English Bắc Giang – Bắc Ninh</h3><p>Channel · Video Content</p><span class="view">Mở kênh →</span></a>
-<a class="social-card" href="https://www.facebook.com/share/v/1NYgMbjXcs/" target="_blank" rel="noopener"><div class="social-top"><span class="pill">Short-form</span><span>↗</span></div><h3>Facebook Featured Video</h3><p>Short video · Social Content</p><span class="view">Mở nội dung →</span></a>
-</div></div></section>
+    <!-- Phần 06: Liên hệ -->
+    <section class="reveal">
+        <h2 class="section-title">06 Liên hệ</h2>
+        <div class="contact-grid">
+            <a href="tel:0559810191" class="card contact-card hover-lift">
+                <div class="icon-square" style="margin: 0 auto 15px;">📞</div>
+                <h4>0559.810.191</h4>
+                <p>Gọi điện thoại</p>
+            </a>
+            <a href="mailto:tuannhat704@gmail.com" class="card contact-card hover-lift">
+                <div class="icon-square" style="margin: 0 auto 15px;">✉️</div>
+                <h4>tuannhat704@gmail.com</h4>
+                <p>Gửi Email</p>
+            </a>
+            <a href="#" class="card contact-card hover-lift">
+                <div class="icon-square" style="margin: 0 auto 15px;">🌐</div>
+                <h4>Facebook</h4>
+                <p>Kết nối mạng xã hội</p>
+            </a>
+            <a href="#" class="card contact-card hover-lift">
+                <div class="icon-square" style="margin: 0 auto 15px;">▶️</div>
+                <h4>YouTube</h4>
+                <p>Xem các video edit</p>
+            </a>
+        </div>
+    </section>
 
-<section id="workflow" class="reveal"><div class="wrap"><div class="head"><div><div class="kicker">05 / Workflow</div><h2>Cách tôi triển khai nội dung</h2></div><p>Một quy trình gọn, dễ phối hợp với Content, Media, Design và các bộ phận liên quan.</p></div>
-<div class="plan"><div class="timeline">
-<div class="step"><div class="num">01</div><div><strong>Research</strong><span>Nắm chủ đề, audience, nhu cầu và tham khảo thị trường.</span></div><div class="step-art"><img src="assets/workflow-research.svg" alt=""></div></div>
-<div class="step"><div class="num">02</div><div><strong>Idea & Hook</strong><span>Xây dựng góc nội dung, headline, hook và format.</span></div><div class="step-art"><img src="assets/workflow-idea.svg" alt=""></div></div>
-<div class="step"><div class="num">03</div><div><strong>Script</strong><span>Triển khai outline hoặc kịch bản phù hợp từng nền tảng.</span></div><div class="step-art"><img src="assets/workflow-script.svg" alt=""></div></div>
-<div class="step"><div class="num">04</div><div><strong>Design / Edit</strong><span>Thiết kế visual, thumbnail, dựng video và hoàn thiện caption.</span></div><div class="step-art"><img src="assets/workflow-edit.svg" alt=""></div></div>
-<div class="step"><div class="num">05</div><div><strong>Publish / Review</strong><span>Kiểm duyệt, xuất bản và rút kinh nghiệm cho nội dung tiếp theo.</span></div><div class="step-art"><img src="assets/workflow-publish.svg" alt=""></div></div>
-</div><div class="tools"><div class="toolbox"><h3>Content Planning</h3><p>Lập kế hoạch nội dung tuần/tháng, phối hợp các định dạng Facebook, YouTube và Social Media.</p></div><div class="toolbox"><h3>AI hỗ trợ công việc</h3><p>Research, brainstorm, outline, script và checklist; nội dung cuối cùng vẫn được rà soát trước khi xuất bản.</p></div></div></div></div></section>
-
-<section id="contact" class="contact reveal"><div class="wrap"><div class="contact-card"><div><div class="kicker">06 / Liên hệ</div><h2>PHAN NHẬT TUẤN</h2><p>Content Marketing · Content Creator · Social Media</p><div class="contact-details"><span class="contact-detail">☎ 0559.810.191</span><span class="contact-detail">✉ tuannhat704@gmail.com</span></div></div><div class="contact-links"><a class="btn" href="https://www.facebook.com/tuan.nhat.918304/" target="_blank" rel="noopener">Facebook cá nhân ↗</a><a class="btn" href="https://www.youtube.com/@SuperCuteMilk/videos" target="_blank" rel="noopener">YouTube cá nhân ↗</a><a class="btn" href="mailto:tuannhat704@gmail.com">Email ↗</a><a class="btn" href="tel:+84559810191">Gọi điện ↗</a></div></div></div></section>
-</main>
-<footer><div class="wrap">© 2026 PHAN NHẬT TUẤN · Content Marketing / Content Creator / Social Media</div></footer>
-
-<script>
-const workTrack=document.getElementById('workTrack');const dots=document.getElementById('workDots');
-let current=0;let items=[...workTrack.querySelectorAll('.work-slide')];let pendingFile=null;
-function refreshItems(){items=[...workTrack.querySelectorAll('.work-slide')];current=Math.min(current,items.length-1);renderDots();go(current,false)}
-function renderDots(){dots.innerHTML='';items.forEach((_,i)=>{const d=document.createElement('button');d.type='button';d.className='dot'+(i===current?' active':'');d.setAttribute('aria-label','Tác phẩm '+(i+1));d.onclick=()=>go(i);dots.appendChild(d)})}
-function go(i,anim=true){current=(i+items.length)%items.length;workTrack.style.transition=anim?'transform .5s cubic-bezier(.22,.61,.36,1)':'none';workTrack.style.transform=`translateX(-${current*100}%)`;[...dots.children].forEach((d,j)=>d.classList.toggle('active',j===current))}
-document.querySelector('.carousel-btn.prev').onclick=()=>go(current-1);document.querySelector('.carousel-btn.next').onclick=()=>go(current+1);refreshItems();
-
-const addInput=document.getElementById('addWork'),panel=document.getElementById('customPanel');
-addInput.addEventListener('change',e=>{pendingFile=e.target.files[0]||null;if(pendingFile){panel.classList.add('open');document.getElementById('workTitle').value=pendingFile.name.replace(/\.[^/.]+$/,'')}});
-document.getElementById('cancelWork').onclick=()=>{panel.classList.remove('open');addInput.value='';pendingFile=null};
-document.getElementById('saveWork').onclick=()=>{if(!pendingFile)return;const reader=new FileReader();reader.onload=()=>{const title=document.getElementById('workTitle').value||'Tác phẩm mới';const type=document.getElementById('workType').value||'Creative';const desc=document.getElementById('workDesc').value||'Nội dung sáng tạo và xử lý hình ảnh/video.';const role=document.getElementById('workRole').value||'Thực hiện nội dung và hoàn thiện visual theo mục tiêu truyền thông.';const isVideo=pendingFile.type.startsWith('video/');let media=isVideo?`<video class="work-img" src="${reader.result}" controls playsinline></video>`:`<img class="work-img" src="${reader.result}" alt="${title}">`;const slide=document.createElement('div');slide.className='work-slide';slide.innerHTML=`<article class="work-card">${media}<div class="work-body"><span class="pill">${type}</span><h3>${title}</h3><p>${desc}</p><div class="role"><strong>Vai trò</strong><span>${role}</span></div></div></article>`;workTrack.appendChild(slide);saveCustom({title,type,desc,role,data:reader.result,isVideo});panel.classList.remove('open');addInput.value='';pendingFile=null;refreshItems();go(items.length-1)};reader.readAsDataURL(pendingFile)};
-function saveCustom(obj){const arr=JSON.parse(localStorage.getItem('pt_work_items')||'[]');arr.push(obj);localStorage.setItem('pt_work_items',JSON.stringify(arr))}
-function loadCustom(){const arr=JSON.parse(localStorage.getItem('pt_work_items')||'[]');arr.forEach(obj=>{const slide=document.createElement('div');slide.className='work-slide';const media=obj.isVideo?`<video class="work-img" src="${obj.data}" controls playsinline></video>`:`<img class="work-img" src="${obj.data}" alt="${obj.title}">`;slide.innerHTML=`<article class="work-card">${media}<div class="work-body"><span class="pill">${obj.type}</span><h3>${obj.title}</h3><p>${obj.desc}</p><div class="role"><strong>Vai trò</strong><span>${obj.role}</span></div></div></article>`;workTrack.appendChild(slide)});refreshItems()}
-loadCustom();
-
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-</script>
+    <!-- Link file JS -->
+    <script src="script.js"></script>
 </body>
 </html>
