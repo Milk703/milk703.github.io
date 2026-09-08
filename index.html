@@ -3,86 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phan Nhật Tuấn - Content Marketing Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <title>Phan Nhật Tuấn - Content Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo"><strong>PHAN NHẬT TUẤN</strong><br><span>Content Marketing | Content Creator</span></div>
+        <nav>
+            <a href="#" class="active">Trang chủ</a>
+            <a href="#about">Giới thiệu</a>
+            <a href="#work">Dự án nổi bật</a>
+            <a href="#channels">Kênh của tôi</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+        <a href="#" class="btn-primary">📥 Tải CV</a>
+    </header>
+
     <!-- Hero Section -->
-    <section class="reveal" style="text-align: center; padding-top: 100px;">
-        <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Biến ý tưởng thành <br><span class="highlight">nội dung thu hút.</span></h1>
-        <p style="font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto;">PHAN NHẬT TUẤN | Content Marketing | Video Editor <br> Ứng dụng tư duy AI-first để tối ưu hóa quy trình sáng tạo đa nền tảng.</p>
+    <section class="hero reveal">
+        <div class="hero-text">
+            <h1>Biến ý tưởng thành<br><span class="highlight">nội dung thu hút.</span></h1>
+            <p>Tôi là người yêu thích sáng tạo nội dung, thiết kế và truyền thông. Luôn nỗ lực mang đến những sản phẩm chất lượng, đúng mục tiêu và phù hợp với thương hiệu.</p>
+        </div>
     </section>
 
-    <!-- Phần 01: Giới thiệu (Đã map với icon SVG của bạn) -->
-    <section class="reveal">
-        <h2 class="section-title">01 Giới thiệu</h2>
-        <div class="grid-4">
-            <div class="card hover-lift">
-                <div class="icon-square"><img src="assets/about-content.svg" alt="Content" style="width:30px;"></div>
-                <h4>Content & Social</h4>
-                <p>Lên kế hoạch nội dung, viết bài, quản trị hệ thống fanpage và TikTok.</p>
+    <!-- 01 Giới thiệu -->
+    <section id="about" class="reveal section-layout">
+        <div class="section-sidebar">
+            <h2 class="title-number">01 <span>Giới thiệu</span></h2>
+            <h3>Hành trình sáng tạo qua từng con chữ, hình ảnh và video</h3>
+            <p>Với hơn 4 năm kinh nghiệm trong lĩnh vực Content Marketing, tôi tập trung vào việc xây dựng nội dung đa nền tảng... Luôn lắng nghe, thấu hiểu và tạo ra những sản phẩm phù hợp.</p>
+            <a href="#" class="btn-primary">Tìm hiểu thêm ➔</a>
+        </div>
+        <div class="section-content grid-5">
+            <div class="card"><img src="assets/about-content.svg" class="icon-img"><h4>Content & Social</h4><p>Lên kế hoạch nội dung, viết bài, quản lý kênh mạng xã hội.</p></div>
+            <div class="card"><img src="assets/about-video.svg" class="icon-img"><h4>Video Content</h4><p>Lên ý tưởng, viết kịch bản, quay - dựng video ngắn và YouTube.</p></div>
+            <div class="card"><img src="assets/about-design.svg" class="icon-img"><h4>Design</h4><p>Thiết kế banner, thumbnail, ấn phẩm truyền thông bằng Canva & Ai.</p></div>
+            <div class="card"><img src="assets/about-ai.svg" class="icon-img"><h4>AI & Content</h4><p>Ứng dụng AI trong nghiên cứu, phát triển ý tưởng và tối ưu hóa.</p></div>
+            <div class="card"><img src="assets/about-manage.svg" class="icon-img"><h4>Quản lý nội dung</h4><p>Kiểm duyệt chất lượng, quản lý và tối ưu nội dung trước khi đăng.</p></div>
+        </div>
+    </section>
+
+    <!-- 02 Kênh truyền thông -->
+    <section id="channels" class="reveal section-layout">
+        <div class="section-sidebar">
+            <h2 class="title-number">02 <span>Kênh truyền thông</span></h2>
+            <div class="channel-card">
+                <div class="chan-info"><strong>Facebook</strong><br><span>3 kênh</span></div>
+                <a href="#" class="btn-outline">Xem ngay ➔</a>
             </div>
-            <div class="card hover-lift">
-                <div class="icon-square"><img src="assets/about-video.svg" alt="Video" style="width:30px;"></div>
-                <h4>Video Content</h4>
-                <p>Kịch bản, quay dựng video ngắn tốc độ cao bắt trend thị trường.</p>
+            <div class="channel-card mt-3">
+                <div class="chan-info"><strong>YouTube</strong><br><span>2 kênh</span></div>
+                <a href="#" class="btn-outline">Xem ngay ➔</a>
             </div>
-            <div class="card hover-lift">
-                <div class="icon-square"><img src="assets/about-design.svg" alt="Design" style="width:30px;"></div>
-                <h4>Design</h4>
-                <p>Thiết kế banner, thumbnail chuẩn nhận diện thương hiệu.</p>
-            </div>
-            <div class="card hover-lift">
-                <div class="icon-square"><img src="assets/about-ai.svg" alt="AI" style="width:30px;"></div>
-                <h4>AI & Content</h4>
-                <p>Ứng dụng AI phân tích insight, viết hook và tự động hóa quy trình.</p>
+        </div>
+        <div class="section-content grid-2">
+            <div class="feature-card"><img src="assets/event-recap.png" alt="FB"><div class="p-3"><strong>Bài đăng Facebook nổi bật</strong><br><a href="#" class="text-red">Xem chi tiết ➔</a></div></div>
+            <div class="feature-card"><img src="assets/rising-stars.png" alt="YT"></div>
+        </div>
+    </section>
+
+    <!-- 03 Dự án nổi bật (Đã gắn JS tự động) -->
+    <section id="work" class="reveal section-layout">
+        <div class="section-sidebar">
+            <h2 class="title-number">03 <span>Dự án nổi bật</span></h2>
+            <p class="subtitle">Selected Work</p>
+            <p>Tổng hợp những thiết kế, video và nội dung <strong>mà tôi đã</strong> thực hiện. Mỗi dự án là một <strong>câu chuyện về sự sáng tạo</strong>, chỉn chu và tinh thần trách nhiệm.</p>
+            <a href="#" class="btn-primary mt-3">Khám phá tất cả ➔</a>
+        </div>
+        <div class="section-content">
+            <div class="carousel-wrapper">
+                <button class="nav-btn prev-btn" id="prev-btn">❮</button>
+                <div class="carousel-track" id="carousel-track"></div>
+                <button class="nav-btn next-btn" id="next-btn">❯</button>
             </div>
         </div>
     </section>
 
-    <!-- Phần 03: Selected Work -->
+    <!-- 05 Quy trình làm việc -->
     <section class="reveal">
-        <h2 class="section-title">03 Dự án nổi bật</h2>
-        <div class="carousel-wrapper hover-lift">
-            <button class="carousel-btn prev-btn" id="prev-btn">❮</button>
-            <div class="carousel-track" id="carousel-track"></div>
-            <button class="carousel-btn next-btn" id="next-btn">❯</button>
-        </div>
-        <div class="dots" id="dots-container"></div>
-    </section>
-
-    <!-- Phần 05: Workflow (Đã map với SVG của bạn) -->
-    <section class="reveal">
-        <h2 class="section-title">05 Quy trình làm việc</h2>
-        <div class="grid-5">
-            <div class="card hover-lift"><div class="icon-square"><img src="assets/workflow-research.svg" style="width:25px;"></div><h4>Research</h4><p>Phân tích insight</p></div>
-            <div class="card hover-lift"><div class="icon-square"><img src="assets/workflow-idea.svg" style="width:25px;"></div><h4>Idea & Hook</h4><p>Định hướng thông điệp</p></div>
-            <div class="card hover-lift"><div class="icon-square"><img src="assets/workflow-script.svg" style="width:25px;"></div><h4>Script</h4><p>Lên kịch bản chi tiết</p></div>
-            <div class="card hover-lift"><div class="icon-square"><img src="assets/workflow-edit.svg" style="width:25px;"></div><h4>Design / Edit</h4><p>Sản xuất media</p></div>
-            <div class="card hover-lift"><div class="icon-square"><img src="assets/workflow-publish.svg" style="width:25px;"></div><h4>Publish</h4><p>Đăng tải & đo lường</p></div>
+        <h2 class="title-number">05 <span>Quy trình làm việc</span></h2>
+        <p class="text-red mb-4">Linh hoạt - Hiệu quả - Chất lượng</p>
+        <div class="workflow-flex">
+            <div class="step"><span>01</span> <strong>Tiếp nhận yêu cầu</strong><p>Trao đổi, phân tích mục tiêu.</p></div>
+            <div class="arrow">❯</div>
+            <div class="step"><span>02</span> <strong>Ý tưởng & kế hoạch</strong><p>Định hướng, thiết kế triển khai.</p></div>
+            <div class="arrow">❯</div>
+            <div class="step"><span>03</span> <strong>Sản xuất nội dung</strong><p>Viết bài, thiết kế, quay/dựng.</p></div>
+            <div class="arrow">❯</div>
+            <div class="step"><span>04</span> <strong>Kiểm duyệt</strong><p>Rà soát chất lượng, tối ưu.</p></div>
+            <div class="arrow">❯</div>
+            <div class="step"><span>05</span> <strong>Đăng tải & đo lường</strong><p>Đo lường hiệu quả, điều chỉnh.</p></div>
         </div>
     </section>
 
-    <!-- Phần 06: Liên hệ -->
-    <section class="reveal">
-        <h2 class="section-title">06 Liên hệ</h2>
-        <div class="contact-grid">
-            <a href="tel:0559810191" class="card contact-card hover-lift">
-                <div class="icon-square" style="margin: 0 auto 15px;">📞</div>
-                <h4>0559.810.191</h4>
-                <p>Gọi điện thoại</p>
-            </a>
-            <a href="mailto:tuannhat704@gmail.com" class="card contact-card hover-lift">
-                <div class="icon-square" style="margin: 0 auto 15px;">✉️</div>
-                <h4>tuannhat704@gmail.com</h4>
-                <p>Gửi Email</p>
-            </a>
+    <!-- 06 Liên hệ -->
+    <section id="contact" class="reveal">
+        <h2 class="title-number">06 <span>Liên hệ</span></h2>
+        <div class="contact-bar">
+            <div class="contact-item">📞 <strong>0559.810.191</strong><br><span>Gọi ngay cho tôi</span></div>
+            <div class="contact-item">✉️ <strong>tuannhat704@gmail.com</strong><br><span>Gửi email cho tôi</span></div>
+            <div class="contact-item">🌐 <strong>Facebook</strong><br><span>fb.com/tuan.nhat</span></div>
+            <div class="contact-item">▶️ <strong>YouTube</strong><br><span>@SuperCuteMilk</span></div>
         </div>
     </section>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-
