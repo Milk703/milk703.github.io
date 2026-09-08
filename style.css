@@ -1,1 +1,54 @@
+/* style.css */
+:root {
+  --primary: #d32f2f;
+  --bg-color: #fcfcfc;
+  --text-main: #333333;
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 700; color: #111; }
+.highlight { color: var(--primary); }
+
+/* Animation Classes */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.hover-lift:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+.hero-img { animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* Layout & Sections */
+section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+.section-title { font-size: 2rem; margin-bottom: 40px; border-left: 4px solid var(--primary); padding-left: 15px; }
+
+/* Grid cho Phần 01 & 05 */
+.grid-4, .grid-5 { display: grid; gap: 20px; }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grid-5 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.card { background: #fff; padding: 25px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.icon-square { width: 50px; height: 50px; background: #ffebee; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 15px; }
+
+/* Carousel Selected Work */
+.carousel-wrapper { position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #fff; }
+.carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+.slide { min-width: 100%; display: flex; flex-wrap: wrap; }
+.slide-media { flex: 1; min-width: 300px; background: #000; }
+.slide-media img, .slide-media video { width: 100%; height: 100%; object-fit: cover; }
+.slide-info { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+.badge { display: inline-block; background: #ffebee; color: var(--primary); padding: 5px 12px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; margin-bottom: 15px; align-self: flex-start;}
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; font-size: 18px; z-index: 10; transition: 0.3s; }
+.carousel-btn:hover { background: var(--primary); color: #fff; }
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+.dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+.dot { width: 10px; height: 10px; background: #ccc; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+.dot.active { background: var(--primary); width: 25px; border-radius: 10px; }
+
+/* Contact Grid */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.contact-card { text-decoration: none; color: inherit; text-align: center; }
