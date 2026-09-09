@@ -1,117 +1,73 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phan Nhật Tuấn - Content Marketing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio của Phan Nhật Tuấn – Content Marketing, Social Content, Video Editing và Design.">
+  <meta name="theme-color" content="#b3261e">
+  <title>Phan Nhật Tuấn — Content Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo"><strong>PHAN NHẬT TUẤN</strong><br><span>Content Marketing | Content Creator</span></div>
-        <nav>
-            <a href="#" class="active">Trang chủ</a>
-            <a href="#about">Giới thiệu</a>
-            <a href="#work">Dự án nổi bật</a>
-            <a href="#channels">Kênh của tôi</a>
-            <a href="#contact">Liên hệ</a>
-        </nav>
-        <a href="#" class="btn-primary">📥 Tải CV</a>
-    </header>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Về đầu trang"><strong>PHAN NHẬT TUẤN</strong><span>Content Marketing · Content Creator</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="main-nav">
+      <a href="#about">Giới thiệu</a><a href="#channels">Kênh</a><a href="#work">Dự án</a><a href="#strengths">Năng lực</a><a href="#workflow">Quy trình</a><a href="#contact">Liên hệ</a>
+    </nav>
+    <a class="btn btn-primary header-cta" href="mailto:tuannhat704@gmail.com?subject=Trao%20%C4%91%E1%BB%95i%20c%C6%A1%20h%E1%BB%99i%20Content%20Marketing">Trao đổi với tôi ↗</a>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero reveal">
-        <div class="hero-text">
-            <h1>Biến ý tưởng thành<br><span class="highlight">nội dung thu hút.</span></h1>
-            <p>Tôi là người yêu thích sáng tạo nội dung, thiết kế và truyền thông. Luôn nỗ lực mang đến những sản phẩm chất lượng, đúng mục tiêu và phù hợp với thương hiệu.</p>
-        </div>
+  <main>
+    <section class="hero section reveal">
+      <div class="hero-copy">
+        <p class="eyebrow">CONTENT · SOCIAL · VIDEO · DESIGN</p>
+        <h1>Biến ý tưởng thành <span>nội dung thu hút.</span></h1>
+        <p class="hero-lead">Tôi phát triển nội dung đa nền tảng từ ý tưởng, câu chữ, hình ảnh đến video — ưu tiên sự rõ ràng, tính thẩm mỹ và mục tiêu truyền thông.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#work">Xem dự án nổi bật ↘</a><a class="btn btn-light" href="#contact">Liên hệ với tôi</a></div>
+      </div>
+      <div class="hero-note" aria-label="Thông tin chuyên môn">
+        <div class="note-line"><span>01</span><strong>Content</strong><small>Social &amp; Editorial</small></div>
+        <div class="note-line"><span>02</span><strong>Video</strong><small>Short-form &amp; YouTube</small></div>
+        <div class="note-line"><span>03</span><strong>Design</strong><small>Social &amp; Campaign</small></div>
+      </div>
     </section>
 
-    <!-- 01 Giới thiệu -->
-    <section id="about" class="reveal section-layout">
-        <div class="section-sidebar">
-            <h2 class="title-number">01 <span>Giới thiệu</span></h2>
-            <h3>Hành trình sáng tạo qua từng con chữ, hình ảnh và video</h3>
-            <p>Với hơn 4 năm kinh nghiệm trong lĩnh vực Content Marketing, tôi tập trung vào việc xây dựng nội dung đa nền tảng... Luôn lắng nghe, thấu hiểu và tạo ra những sản phẩm phù hợp.</p>
-            <a href="#" class="btn-primary">Tìm hiểu thêm ➔</a>
-        </div>
-        <div class="section-content grid-5">
-            <div class="card"><img src="assets/about-content.svg" class="icon-img"><h4>Content & Social</h4><p>Lên kế hoạch nội dung, viết bài, quản lý kênh mạng xã hội.</p></div>
-            <div class="card"><img src="assets/about-video.svg" class="icon-img"><h4>Video Content</h4><p>Lên ý tưởng, viết kịch bản, quay - dựng video ngắn và YouTube.</p></div>
-            <div class="card"><img src="assets/about-design.svg" class="icon-img"><h4>Design</h4><p>Thiết kế banner, thumbnail, ấn phẩm truyền thông bằng Canva & Ai.</p></div>
-            <div class="card"><img src="assets/about-ai.svg" class="icon-img"><h4>AI & Content</h4><p>Ứng dụng AI trong nghiên cứu, phát triển ý tưởng và tối ưu hóa.</p></div>
-            <div class="card"><img src="assets/about-manage.svg" class="icon-img"><h4>Quản lý nội dung</h4><p>Kiểm duyệt chất lượng, quản lý và tối ưu nội dung trước khi đăng.</p></div>
-        </div>
+    <section id="about" class="section section-split reveal">
+      <div class="section-intro"><p class="section-kicker">01 / GIỚI THIỆU</p><h2>Từ nội dung đến hình ảnh, mọi chi tiết đều hướng về một thông điệp rõ ràng.</h2><p>Tôi có hơn 4 năm kinh nghiệm thực hiện Content Marketing và nội dung mạng xã hội, kết hợp viết, thiết kế, dựng video và các công cụ AI để rút ngắn quá trình sản xuất.</p><a class="text-link" href="#contact">Trao đổi về công việc ↗</a></div>
+      <div class="service-grid">
+        <article class="service-card"><img src="assets/about-content.svg" alt="Content & Social" loading="lazy"><div><h3>Content &amp; Social</h3><p>Lên ý tưởng, kế hoạch và triển khai nội dung cho các nền tảng xã hội.</p></div></article>
+        <article class="service-card"><img src="assets/about-video.svg" alt="Video Content" loading="lazy"><div><h3>Video Content</h3><p>Phát triển ý tưởng, kịch bản và dựng video ngắn hoặc nội dung YouTube.</p></div></article>
+        <article class="service-card"><img src="assets/about-design.svg" alt="Design" loading="lazy"><div><h3>Design</h3><p>Thiết kế banner, thumbnail và ấn phẩm social với Canva, Illustrator, Photoshop.</p></div></article>
+        <article class="service-card"><img src="assets/about-ai.svg" alt="AI & Content" loading="lazy"><div><h3>AI &amp; Content</h3><p>Ứng dụng AI để nghiên cứu, phát triển góc nội dung và hỗ trợ sản xuất.</p></div></article>
+        <article class="service-card"><img src="assets/about-manage.svg" alt="Quản lý nội dung" loading="lazy"><div><h3>Quản lý nội dung</h3><p>Rà soát, sắp xếp và tối ưu nội dung trước khi đưa lên kênh.</p></div></article>
+      </div>
     </section>
 
-    <!-- 02 Kênh truyền thông -->
-    <section id="channels" class="reveal section-layout">
-        <div class="section-sidebar">
-            <h2 class="title-number">02 <span>Kênh truyền thông</span></h2>
-            <div class="channel-card">
-                <div class="chan-info"><strong>Facebook</strong><br><span>3 kênh</span></div>
-                <a href="#" class="btn-outline">Xem ngay ➔</a>
-            </div>
-            <div class="channel-card mt-3">
-                <div class="chan-info"><strong>YouTube</strong><br><span>2 kênh</span></div>
-                <a href="#" class="btn-outline">Xem ngay ➔</a>
-            </div>
-        </div>
-        <div class="section-content grid-2">
-            <div class="feature-card"><img src="assets/event-recap.png" alt="FB"><div class="p-3"><strong>Bài đăng Facebook nổi bật</strong><br><a href="#" class="text-red">Xem chi tiết ➔</a></div></div>
-            <div class="feature-card"><img src="assets/rising-stars.png" alt="YT"></div>
-        </div>
+    <section id="channels" class="section reveal">
+      <div class="section-heading"><div><p class="section-kicker">02 / KÊNH TRUYỀN THÔNG</p><h2>Các nền tảng tôi từng trực tiếp triển khai.</h2></div><p class="heading-note">Tập trung vào nội dung dễ tiếp cận, hình ảnh nhất quán và trải nghiệm xem tự nhiên.</p></div>
+      <div class="channel-grid">
+        <article class="channel-card"><div class="channel-top"><span class="channel-label">FACEBOOK</span><span class="channel-count">03 kênh</span></div><h3>Social Content</h3><p>Nội dung giáo dục, hoạt động, chiến dịch và truyền thông thương hiệu.</p><div class="channel-links"><a href="https://www.facebook.com/anhngugoldmax" target="_blank" rel="noopener">Anh Ngữ GoldMax ↗</a><a href="https://www.facebook.com/profile.php?id=61555176887133" target="_blank" rel="noopener">Kênh Bắc Ninh ↗</a><a href="https://www.facebook.com/profile.php?id=61573202585781" target="_blank" rel="noopener">Kênh nội dung ↗</a></div></article>
+        <article class="channel-card"><div class="channel-top"><span class="channel-label">YOUTUBE</span><span class="channel-count">02 kênh</span></div><h3>Video &amp; YouTube</h3><p>Video nội dung, video giáo dục và các định dạng phục vụ kênh dài hạn.</p><div class="channel-links"><a href="https://www.youtube.com/@anhngugoldmax4920" target="_blank" rel="noopener">Anh Ngữ GoldMax ↗</a><a href="https://www.youtube.com/@AnhNg%E1%BB%AFGoldMaxB%E1%BA%AFcGiang" target="_blank" rel="noopener">GoldMax Bắc Giang ↗</a></div></article>
+      </div>
     </section>
 
-    <!-- 03 Dự án nổi bật (Đã gắn JS tự động) -->
-    <section id="work" class="reveal section-layout">
-        <div class="section-sidebar">
-            <h2 class="title-number">03 <span>Dự án nổi bật</span></h2>
-            <p class="subtitle">Selected Work</p>
-            <p>Tổng hợp những thiết kế, video và nội dung <strong>mà tôi đã</strong> thực hiện. Mỗi dự án là một <strong>câu chuyện về sự sáng tạo</strong>, chỉn chu và tinh thần trách nhiệm.</p>
-            <a href="#" class="btn-primary mt-3">Khám phá tất cả ➔</a>
-        </div>
-        <div class="section-content">
-            <div class="carousel-wrapper">
-                <button class="nav-btn prev-btn" id="prev-btn">❮</button>
-                <div class="carousel-track" id="carousel-track"></div>
-                <button class="nav-btn next-btn" id="next-btn">❯</button>
-            </div>
-        </div>
+    <section id="work" class="section reveal">
+      <div class="section-heading work-heading"><div><p class="section-kicker">03 / DỰ ÁN NỔI BẬT</p><h2>Selected Work</h2></div><div class="carousel-controls"><button class="carousel-btn" id="prev-btn" aria-label="Tác phẩm trước">←</button><span id="slide-counter">01 / 04</span><button class="carousel-btn" id="next-btn" aria-label="Tác phẩm tiếp theo">→</button></div></div>
+      <div class="work-carousel" id="work-carousel"><div class="carousel-track" id="carousel-track" aria-live="polite"></div></div>
+      <div class="carousel-dots" id="carousel-dots" aria-label="Chọn tác phẩm"></div>
+      <p class="data-note">Muốn thêm tác phẩm mới? Chỉ cần thêm file vào thư mục <code>assets/</code> và một mục tương ứng trong <code>data/portfolio.json</code>. Website sẽ tự hiển thị theo dữ liệu đó.</p>
     </section>
 
-    <!-- 05 Quy trình làm việc -->
-    <section class="reveal">
-        <h2 class="title-number">05 <span>Quy trình làm việc</span></h2>
-        <p class="text-red mb-4">Linh hoạt - Hiệu quả - Chất lượng</p>
-        <div class="workflow-flex">
-            <div class="step"><span>01</span> <strong>Tiếp nhận yêu cầu</strong><p>Trao đổi, phân tích mục tiêu.</p></div>
-            <div class="arrow">❯</div>
-            <div class="step"><span>02</span> <strong>Ý tưởng & kế hoạch</strong><p>Định hướng, thiết kế triển khai.</p></div>
-            <div class="arrow">❯</div>
-            <div class="step"><span>03</span> <strong>Sản xuất nội dung</strong><p>Viết bài, thiết kế, quay/dựng.</p></div>
-            <div class="arrow">❯</div>
-            <div class="step"><span>04</span> <strong>Kiểm duyệt</strong><p>Rà soát chất lượng, tối ưu.</p></div>
-            <div class="arrow">❯</div>
-            <div class="step"><span>05</span> <strong>Đăng tải & đo lường</strong><p>Đo lường hiệu quả, điều chỉnh.</p></div>
-        </div>
-    </section>
+    <section id="strengths" class="section reveal"><div class="section-heading"><div><p class="section-kicker">04 / NĂNG LỰC</p><h2>Điểm mạnh tôi mang vào mỗi dự án.</h2></div></div><div class="strength-grid"><article><span>01</span><h3>Tư duy nội dung</h3><p>Biết bắt đầu từ mục tiêu, đối tượng và thông điệp trước khi triển khai hình thức.</p></article><article><span>02</span><h3>Đa kỹ năng</h3><p>Có thể phối hợp content, design và video để một ý tưởng đi trọn từ đầu đến cuối.</p></article><article><span>03</span><h3>Thẩm mỹ &amp; chi tiết</h3><p>Ưu tiên bố cục sạch, dễ đọc, đúng tinh thần thương hiệu và phù hợp từng nền tảng.</p></article><article><span>04</span><h3>Linh hoạt với AI</h3><p>Dùng AI như công cụ hỗ trợ nghiên cứu và sản xuất, vẫn kiểm soát chất lượng đầu ra.</p></article></div></section>
 
-    <!-- 06 Liên hệ -->
-    <section id="contact" class="reveal">
-        <h2 class="title-number">06 <span>Liên hệ</span></h2>
-        <div class="contact-bar">
-            <div class="contact-item">📞 <strong>0559.810.191</strong><br><span>Gọi ngay cho tôi</span></div>
-            <div class="contact-item">✉️ <strong>tuannhat704@gmail.com</strong><br><span>Gửi email cho tôi</span></div>
-            <div class="contact-item">🌐 <strong>Facebook</strong><br><span>fb.com/tuan.nhat</span></div>
-            <div class="contact-item">▶️ <strong>YouTube</strong><br><span>@SuperCuteMilk</span></div>
-        </div>
-    </section>
+    <section id="workflow" class="section reveal"><div class="section-heading"><div><p class="section-kicker">05 / QUY TRÌNH LÀM VIỆC</p><h2>Linh hoạt · Hiệu quả · Chất lượng</h2></div><p class="heading-note">Một quy trình rõ ràng giúp ý tưởng được triển khai nhanh nhưng vẫn giữ sự chỉn chu.</p></div><div class="workflow-grid"><article class="workflow-step"><img src="assets/workflow-research.svg" alt="Nghiên cứu" loading="lazy"><span>01</span><h3>Tiếp nhận &amp; nghiên cứu</h3><p>Hiểu yêu cầu, đối tượng và mục tiêu.</p></article><article class="workflow-step"><img src="assets/workflow-idea.svg" alt="Ý tưởng" loading="lazy"><span>02</span><h3>Ý tưởng &amp; kế hoạch</h3><p>Xác định concept và hướng triển khai.</p></article><article class="workflow-step"><img src="assets/workflow-script.svg" alt="Kịch bản" loading="lazy"><span>03</span><h3>Nội dung &amp; kịch bản</h3><p>Viết, cấu trúc và chuẩn bị tư liệu.</p></article><article class="workflow-step"><img src="assets/workflow-edit.svg" alt="Sản xuất" loading="lazy"><span>04</span><h3>Thiết kế &amp; sản xuất</h3><p>Dựng video, thiết kế và hoàn thiện.</p></article><article class="workflow-step"><img src="assets/workflow-publish.svg" alt="Đăng tải" loading="lazy"><span>05</span><h3>Đăng tải &amp; tối ưu</h3><p>Rà soát, xuất bản và điều chỉnh.</p></article></div></section>
 
-    <script src="script.js"></script>
+    <section id="contact" class="section contact-section reveal"><div class="contact-card"><div><p class="section-kicker">06 / LIÊN HỆ</p><h2>Hãy cùng tạo ra nội dung có giá trị.</h2><p>Nếu bạn đang tìm một Content Marketer / Content Creator có thể kết hợp nội dung, social, video và design, tôi sẵn sàng trao đổi.</p></div><div class="contact-details"><a href="tel:+84559810191"><span>Điện thoại</span><strong>0559.810.191</strong></a><a href="mailto:tuannhat704@gmail.com"><span>Email</span><strong>tuannhat704@gmail.com</strong></a><div class="contact-buttons"><a class="btn btn-primary" href="https://www.facebook.com/tuan.nhat.918304/" target="_blank" rel="noopener">Facebook ↗</a><a class="btn btn-light" href="https://www.youtube.com/@SuperCuteMilk/videos" target="_blank" rel="noopener">YouTube ↗</a></div></div></div><p class="footer-note">© <span id="year"></span> Phan Nhật Tuấn · Content Marketing Portfolio</p></section>
+  </main>
+  <script src="script.js" defer></script>
 </body>
 </html>
-
-
