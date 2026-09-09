@@ -1,0 +1,44 @@
+{
+  "works": [
+    {
+      "title": "Rising Stars – Cuộc thi thuyết trình đỉnh cao",
+      "category": "Social Content",
+      "format": "Thiết kế Social",
+      "tool": "Canva · Illustrator",
+      "description": "Key visual cho hoạt động truyền thông, tập trung vào thông điệp, màu sắc thương hiệu và khả năng thu hút người xem.",
+      "type": "image",
+      "src": "assets/rising-stars.png",
+      "link": "https://www.facebook.com/share/v/19HxdT9KN6/"
+    },
+    {
+      "title": "Ưu đãi khóa học GoldMax",
+      "category": "Campaign",
+      "format": "Thiết kế Social",
+      "tool": "Canva · Photoshop",
+      "description": "Ấn phẩm truyền thông khuyến mãi với bố cục rõ ràng, màu sắc nổi bật và CTA dễ nhận biết.",
+      "type": "image",
+      "src": "assets/promo.png",
+      "link": "https://www.facebook.com/share/v/1NYgMbjXcs/"
+    },
+    {
+      "title": "Recap hoạt động & sự kiện",
+      "category": "Event Content",
+      "format": "Hình ảnh / Recap",
+      "tool": "Premiere · Canva",
+      "description": "Tổng hợp hình ảnh hoạt động và sự kiện theo hướng trực quan, dễ xem và phù hợp với nội dung mạng xã hội.",
+      "type": "image",
+      "src": "assets/event-recap.png",
+      "link": "https://www.facebook.com/anhngugoldmax"
+    },
+    {
+      "title": "Series từ vựng tiếng Anh",
+      "category": "Educational Content",
+      "format": "Educational Social",
+      "tool": "Canva · Content Planning",
+      "description": "Series nội dung giáo dục được trình bày ngắn gọn, trực quan, giúp người học dễ tiếp cận và ghi nhớ.",
+      "type": "image",
+      "src": "assets/vocabulary.png",
+      "link": "https://www.facebook.com/anhngugoldmax"
+    }
+  ]
+}
