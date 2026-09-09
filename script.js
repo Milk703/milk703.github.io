@@ -1,226 +1,76 @@
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
-
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Scroll reveal
-const revealItems = $$('.reveal');
-if ('IntersectionObserver' in window && !reduceMotion) {
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.12 });
-  revealItems.forEach(item => revealObserver.observe(item));
-} else {
-  revealItems.forEach(item => item.classList.add('is-visible'));
+// ---------- Theme / Dark mode ----------
+const themeStyle = document.createElement('style');
+themeStyle.textContent = `
+:root{color-scheme:light}.theme-toggle{width:44px;height:44px;border:1px solid var(--line);background:#fff;color:#333;border-radius:50%;cursor:pointer;display:inline-grid;place-items:center;font-size:17px;transition:.3s var(--ease);flex:0 0 44px}.theme-toggle:hover{transform:translateY(-2px) rotate(8deg);box-shadow:0 10px 24px rgba(0,0,0,.1)}
+.strength-card{overflow:hidden;position:relative}.strength-visual{width:100%;height:170px;object-fit:cover;border-radius:14px;margin:0 0 22px;transition:.4s var(--ease);border:1px solid var(--line)}.strength-card:hover .strength-visual{transform:scale(1.025)}
+.external-media{min-height:500px;width:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#211a18,#5a2923);color:#fff;text-align:center;padding:40px;position:relative;overflow:hidden}.external-media:before{content:'';position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(184,135,53,.3),transparent 68%);right:-90px;bottom:-110px}.external-media-inner{position:relative;z-index:1;max-width:440px}.external-media-badge{display:inline-block;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 12px;font-size:10px;letter-spacing:.14em;font-weight:800;color:#e7d8c7}.external-media h4{font-family:Manrope,Inter,sans-serif;font-size:30px;line-height:1.12;margin:20px 0 10px}.external-media p{color:#e7d8c7;font-size:12px;margin:0 0 22px}.external-media .btn{background:#fff;color:#b3261e}
+.youtube-play{position:absolute;width:74px;height:74px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.95);color:var(--red);font-size:24px;box-shadow:0 15px 40px rgba(0,0,0,.2);transition:.35s;z-index:2}.youtube-media:hover .youtube-play{transform:scale(1.12)}
+html[data-theme="dark"]{color-scheme:dark;--paper:#101112;--white:#17191b;--ink:#f4f1ed;--muted:#b7b2ac;--line:#303337;--shadow:0 24px 70px rgba(0,0,0,.34)}html[data-theme="dark"] body{background:var(--paper);color:var(--ink)}html[data-theme="dark"] body:before{opacity:.08;background-image:radial-gradient(rgba(255,255,255,.06) .6px,transparent .6px)}html[data-theme="dark"] .site-header{background:rgba(16,17,18,.88);border-bottom-color:#292b2e}html[data-theme="dark"] .theme-toggle{background:#1b1d20;color:#f4f1ed;border-color:#3b3e42}html[data-theme="dark"] .btn-light,html[data-theme="dark"] .service-card,html[data-theme="dark"] .channel-card,html[data-theme="dark"] .channel-stats,html[data-theme="dark"] .channel-stats div,html[data-theme="dark"] .work-carousel,html[data-theme="dark"] .workflow-step,html[data-theme="dark"] .workflow-note,html[data-theme="dark"] .contact-card,html[data-theme="dark"] .filter-btn,html[data-theme="dark"] .carousel-btn{background:#181a1d;color:var(--ink);border-color:var(--line)}html[data-theme="dark"] .main-nav a,html[data-theme="dark"] .hero-lead,html[data-theme="dark"] .section-intro>p:not(.section-kicker),html[data-theme="dark"] .section-subtext,html[data-theme="dark"] .heading-note,html[data-theme="dark"] .service-card p,html[data-theme="dark"] .channel-card p,html[data-theme="dark"] .strength-card p,html[data-theme="dark"] .workflow-step p,html[data-theme="dark"] .work-info p,html[data-theme="dark"] .contact-card>div:first-child>p:last-of-type{color:#bdb8b1}html[data-theme="dark"] .brand span,html[data-theme="dark"] .note-line small,html[data-theme="dark"] .channel-count,html[data-theme="dark"] .channel-stats span,html[data-theme="dark"] .work-number,html[data-theme="dark"] .data-note,html[data-theme="dark"] .footer-note{color:#97928c}html[data-theme="dark"] .note-line,html[data-theme="dark"] .channel-stats div,html[data-theme="dark"] .contact-details>a{border-color:var(--line)}html[data-theme="dark"] .hero-note{border-color:var(--line)}html[data-theme="dark"] .channel-links a{border-color:var(--line);color:#eee}html[data-theme="dark"] .filter-btn{color:#aaa}html[data-theme="dark"] .filter-btn.active{color:#fff;background:var(--red);border-color:var(--red)}html[data-theme="dark"] .strength-card{background:#181a1d;border-color:var(--line)}html[data-theme="dark"] .strength-visual{border-color:#3a3d41}html[data-theme="dark"] .strength-card b{color:#e45b52}html[data-theme="dark"] .youtube-media{background:#080909}html[data-theme="dark"] .work-media{background:#202225}html[data-theme="dark"] .external-media{background:linear-gradient(135deg,#080909,#3b211e)}html[data-theme="dark"] .external-media .btn{background:#fff;color:#9f271f}
+@media(max-width:760px){.theme-toggle{width:40px;height:40px;flex-basis:40px}.strength-visual{height:150px}.external-media{min-height:360px}.external-media h4{font-size:25px}}
+`;
+document.head.appendChild(themeStyle);
+
+function setupTheme(){
+  const saved = localStorage.getItem('portfolio-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+  const header = $('.site-header');
+  if (!header || $('.theme-toggle', header)) return;
+  const button = document.createElement('button');
+  button.className='theme-toggle'; button.type='button'; button.setAttribute('aria-label','Chuyển chế độ sáng/tối');
+  header.insertBefore(button,$('.header-cta',header));
+  const sync=()=>{const dark=document.documentElement.dataset.theme==='dark';button.textContent=dark?'☀':'☾';button.title=dark?'Chuyển sang Light Mode':'Chuyển sang Dark Mode';};
+  button.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;localStorage.setItem('portfolio-theme',next);sync();});
+  sync();
 }
+setupTheme();
+
+// Scroll reveal
+const revealItems=$$('.reveal');
+if('IntersectionObserver' in window&&!reduceMotion){const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;entry.target.classList.add('is-visible');observer.unobserve(entry.target);});},{threshold:.12});revealItems.forEach(item=>revealObserver.observe(item));}else revealItems.forEach(item=>item.classList.add('is-visible'));
 
 // Header + scroll progress
-const header = $('.site-header');
-const progress = $('#scroll-progress');
-function updateScrollUI(){
-  const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  if (progress) progress.style.width = `${total > 0 ? (scrollTop / total) * 100 : 0}%`;
-  header?.classList.toggle('scrolled', scrollTop > 12);
-}
-window.addEventListener('scroll', updateScrollUI, {passive:true});
-updateScrollUI();
+const header=$('.site-header');const progress=$('#scroll-progress');
+function updateScrollUI(){const scrollTop=window.scrollY||document.documentElement.scrollTop;const total=document.documentElement.scrollHeight-window.innerHeight;if(progress)progress.style.width=`${total>0?(scrollTop/total)*100:0}%`;header?.classList.toggle('scrolled',scrollTop>12);}window.addEventListener('scroll',updateScrollUI,{passive:true});updateScrollUI();
 
-// Soft cursor spotlight on desktop
-const glow = $('#cursor-glow');
-if (glow && window.matchMedia('(pointer:fine)').matches && !reduceMotion) {
-  window.addEventListener('pointermove', event => {
-    glow.style.left = `${event.clientX}px`;
-    glow.style.top = `${event.clientY}px`;
-    glow.style.opacity = '1';
-  }, {passive:true});
-}
+// Soft cursor spotlight
+const glow=$('#cursor-glow');if(glow&&window.matchMedia('(pointer:fine)').matches&&!reduceMotion){window.addEventListener('pointermove',event=>{glow.style.left=`${event.clientX}px`;glow.style.top=`${event.clientY}px`;glow.style.opacity='1';},{passive:true});}
 
 // Mobile navigation
-const menuToggle = $('#menu-toggle');
-const mainNav = $('#main-nav');
-if (menuToggle && mainNav) {
-  menuToggle.addEventListener('click', () => {
-    const open = mainNav.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', String(open));
-  });
-  $$('.main-nav a').forEach(link => link.addEventListener('click', () => {
-    mainNav.classList.remove('open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-  }));
+const menuToggle=$('#menu-toggle');const mainNav=$('#main-nav');if(menuToggle&&mainNav){menuToggle.addEventListener('click',()=>{const open=mainNav.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));});$$('.main-nav a').forEach(link=>link.addEventListener('click',()=>{mainNav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');}));}
+
+// 3D tilt
+if(!reduceMotion&&window.matchMedia('(pointer:fine)').matches){$$('.tilt-card').forEach(card=>{card.addEventListener('pointermove',event=>{const rect=card.getBoundingClientRect();const x=(event.clientX-rect.left)/rect.width-.5;const y=(event.clientY-rect.top)/rect.height-.5;card.style.transform=`perspective(900px) rotateX(${(-y*2.2).toFixed(2)}deg) rotateY(${(x*2.2).toFixed(2)}deg) translateY(-6px)`;});card.addEventListener('pointerleave',()=>{card.style.transform='';});});}
+
+// Six visual illustrations for Section 04 / Năng lực
+function enhanceStrengthCards(){const visuals=['strength-content.svg','strength-social.svg','strength-video.svg','strength-design.svg','strength-ai.svg','strength-learning.svg'];$$('.strength-card').forEach((card,index)=>{if(card.querySelector('.strength-visual')||!visuals[index])return;const img=document.createElement('img');img.className='strength-visual';img.src=`assets/${visuals[index]}`;img.alt=card.querySelector('h3')?.textContent||'Năng lực';img.loading='lazy';card.prepend(img);});}enhanceStrengthCards();
+
+function escapeHtml(value=''){return String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));}
+function safeUrl(value=''){const url=String(value).trim();return /^(https?:\/\/|mailto:|tel:)/i.test(url)?url:'#';}
+
+const track=$('#carousel-track');const dots=$('#carousel-dots');const counter=$('#slide-counter');const prevButton=$('#prev-btn');const nextButton=$('#next-btn');const carousel=$('#work-carousel');const filters=$('#work-filters');let portfolioData=[];let filteredWorks=[];let currentSlide=0;let activeFilter='all';let autoplayTimer=null;let carouselPaused=false;
+
+function createMedia(item){
+  const title=escapeHtml(item.title);
+  if(item.type==='youtube'&&item.youtubeId){const id=encodeURIComponent(item.youtubeId);return `<a class="work-media youtube-media" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở video ${title}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="Thumbnail ${title}" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${id}/mqdefault.jpg'"><span class="youtube-play" aria-hidden="true">▶</span></a>`;}
+  if(item.type==='external'||(item.platform==='Facebook'&&item.link&&!item.src)){const label=escapeHtml(item.format||item.externalLabel||'Facebook Content');return `<a class="work-media external-media" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở nội dung ${title}"><div class="external-media-inner"><span class="external-media-badge">FACEBOOK · ${label}</span><h4>${title}</h4><p>Nhấn để xem nội dung gốc trên Facebook.</p><span class="btn">Xem nội dung ↗</span></div></a>`;}
+  const src=escapeHtml(item.src||'');if(item.type==='video')return `<video src="${src}" controls playsinline preload="metadata"></video>`;return `<img src="${src}" alt="${title}" loading="lazy">`;
 }
-
-// Small 3D tilt for desktop cards
-if (!reduceMotion && window.matchMedia('(pointer:fine)').matches) {
-  $$('.tilt-card').forEach(card => {
-    card.addEventListener('pointermove', event => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - .5;
-      const y = (event.clientY - rect.top) / rect.height - .5;
-      card.style.transform = `perspective(900px) rotateX(${(-y * 2.2).toFixed(2)}deg) rotateY(${(x * 2.2).toFixed(2)}deg) translateY(-6px)`;
-    });
-    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-  });
+function getFilteredWorks(){return activeFilter==='all'?[...portfolioData]:portfolioData.filter(item=>item.platform===activeFilter||item.category===activeFilter);}
+function renderCarousel(){filteredWorks=getFilteredWorks();currentSlide=0;if(!track||!dots)return;if(!filteredWorks.length){track.innerHTML='<article class="work-slide"><div class="work-info"><h3>Chưa có nội dung ở nhóm này.</h3><p>Nhóm dự án sẽ được cập nhật trong data/portfolio.json.</p></div></article>';dots.innerHTML='';if(counter)counter.textContent='00 / 00';return;}
+  track.innerHTML=filteredWorks.map((item,index)=>`<article class="work-slide" aria-label="${index+1} trên ${filteredWorks.length}"><div class="work-media-wrap">${createMedia(item)}</div><div class="work-info"><span class="work-number">${String(index+1).padStart(2,'0')} / ${String(filteredWorks.length).padStart(2,'0')}</span><span class="section-kicker" style="margin-top:14px">${escapeHtml(item.platform||'Selected Work')} · ${escapeHtml(item.category||'Content')}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><p class="work-meta"><strong>Định dạng:</strong> ${escapeHtml(item.format||'—')}<br><strong>Công cụ:</strong> ${escapeHtml(item.tool||'—')}</p>${item.link?`<a class="btn btn-primary work-link" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener">Xem nội dung ↗</a>`:''}</div></article>`).join('');
+  $$('.work-media-wrap').forEach(wrapper=>{const media=wrapper.firstElementChild;if(media?.classList.contains('youtube-media')||media?.classList.contains('external-media'))wrapper.replaceWith(media);else wrapper.className='work-media';});
+  dots.innerHTML=filteredWorks.map((item,index)=>`<button class="dot ${index===0?'active':''}" aria-label="Xem tác phẩm ${index+1}" data-slide="${index}"></button>`).join('');$$('.dot').forEach(dot=>dot.addEventListener('click',()=>goToSlide(Number(dot.dataset.slide))));updateCarousel(false);
 }
-
-function escapeHtml(value = '') {
-  return String(value).replace(/[&<>'"]/g, char => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-  }[char]));
-}
-
-function safeUrl(value = '') {
-  const url = String(value).trim();
-  return /^(https?:\/\/|mailto:|tel:)/i.test(url) ? url : '#';
-}
-
-const track = $('#carousel-track');
-const dots = $('#carousel-dots');
-const counter = $('#slide-counter');
-const prevButton = $('#prev-btn');
-const nextButton = $('#next-btn');
-const carousel = $('#work-carousel');
-const filters = $('#work-filters');
-let portfolioData = [];
-let filteredWorks = [];
-let currentSlide = 0;
-let activeFilter = 'all';
-let autoplayTimer = null;
-let carouselPaused = false;
-
-function createMedia(item) {
-  const title = escapeHtml(item.title);
-  if (item.type === 'youtube' && item.youtubeId) {
-    const id = encodeURIComponent(item.youtubeId);
-    const thumb = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-    return `<a class="work-media youtube-media" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở video ${title}"><img src="${thumb}" alt="Thumbnail ${title}" loading="lazy"></a>`;
-  }
-  if (item.type === 'external') {
-    const label = escapeHtml(item.externalLabel || item.platform || 'Mở nội dung');
-    return `<a class="work-media youtube-media external-media" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở nội dung ${title}"><span>${label} ↗</span></a>`;
-  }
-  const src = escapeHtml(item.src || '');
-  if (item.type === 'video') return `<video src="${src}" controls playsinline preload="metadata"></video>`;
-  return `<img src="${src}" alt="${title}" loading="lazy">`;
-}
-
-function getFilteredWorks(){
-  if (activeFilter === 'all') return [...portfolioData];
-  return portfolioData.filter(item => item.platform === activeFilter || item.category === activeFilter);
-}
-
-function renderCarousel(){
-  filteredWorks = getFilteredWorks();
-  currentSlide = 0;
-  if (!track || !dots) return;
-  if (!filteredWorks.length) {
-    track.innerHTML = '<article class="work-slide"><div class="work-info"><h3>Chưa có nội dung ở nhóm này.</h3><p>Nhóm dự án sẽ được cập nhật trong data/portfolio.json.</p></div></article>';
-    dots.innerHTML = '';
-    if (counter) counter.textContent = '00 / 00';
-    return;
-  }
-
-  track.innerHTML = filteredWorks.map((item, index) => `
-    <article class="work-slide" aria-label="${index + 1} trên ${filteredWorks.length}">
-      <div class="work-media-wrap">${createMedia(item)}</div>
-      <div class="work-info">
-        <span class="work-number">${String(index + 1).padStart(2, '0')} / ${String(filteredWorks.length).padStart(2, '0')}</span>
-        <span class="section-kicker" style="margin-top:14px">${escapeHtml(item.platform || 'Selected Work')} · ${escapeHtml(item.category || 'Content')}</span>
-        <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.description)}</p>
-        <p class="work-meta"><strong>Định dạng:</strong> ${escapeHtml(item.format || '—')}<br><strong>Công cụ:</strong> ${escapeHtml(item.tool || '—')}</p>
-        ${item.link ? `<a class="btn btn-primary work-link" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener">Xem nội dung ↗</a>` : ''}
-      </div>
-    </article>
-  `).join('');
-
-  // Normalize the media wrapper so both image and YouTube cards fill the slide.
-  $$('.work-media-wrap').forEach(wrapper => {
-    const media = wrapper.firstElementChild;
-    if (media?.classList.contains('youtube-media') || media?.classList.contains('external-media')) wrapper.replaceWith(media);
-    else wrapper.className = 'work-media';
-  });
-
-  dots.innerHTML = filteredWorks.map((item, index) => `<button class="dot ${index === 0 ? 'active' : ''}" aria-label="Xem tác phẩm ${index + 1}" data-slide="${index}"></button>`).join('');
-  $$('.dot').forEach(dot => dot.addEventListener('click', () => goToSlide(Number(dot.dataset.slide))));
-  updateCarousel(false);
-}
-
-function updateCarousel(animate = true){
-  if (!track || !filteredWorks.length) return;
-  track.style.transition = animate ? '' : 'none';
-  track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  if (counter) counter.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(filteredWorks.length).padStart(2, '0')}`;
-  $$('.dot').forEach((dot, index) => dot.classList.toggle('active', index === currentSlide));
-  $$('.work-slide video').forEach(video => {
-    if (!video.closest('.work-slide')?.isSameNode($$('.work-slide')[currentSlide])) video.pause();
-  });
-}
-
-function goToSlide(index){
-  if (!filteredWorks.length) return;
-  currentSlide = (index + filteredWorks.length) % filteredWorks.length;
-  updateCarousel(true);
-}
-
-prevButton?.addEventListener('click', () => goToSlide(currentSlide - 1));
-nextButton?.addEventListener('click', () => goToSlide(currentSlide + 1));
-
-// Filters
-filters?.addEventListener('click', event => {
-  const button = event.target.closest('.filter-btn');
-  if (!button) return;
-  activeFilter = button.dataset.filter || 'all';
-  $$('.filter-btn', filters).forEach(btn => btn.classList.toggle('active', btn === button));
-  renderCarousel();
-});
-
-// Touch / keyboard navigation
-let touchStartX = 0;
-carousel?.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].screenX; }, {passive:true});
-carousel?.addEventListener('touchend', event => {
-  const distance = event.changedTouches[0].screenX - touchStartX;
-  if (Math.abs(distance) > 50) goToSlide(currentSlide + (distance < 0 ? 1 : -1));
-}, {passive:true});
-carousel?.addEventListener('keydown', event => {
-  if (event.key === 'ArrowLeft') goToSlide(currentSlide - 1);
-  if (event.key === 'ArrowRight') goToSlide(currentSlide + 1);
-});
-
-// Gentle autoplay. It pauses while the recruiter is interacting with the carousel.
-function startAutoplay(){
-  if (reduceMotion || filteredWorks.length < 2) return;
-  clearInterval(autoplayTimer);
-  autoplayTimer = setInterval(() => {
-    if (!carouselPaused && document.visibilityState === 'visible') goToSlide(currentSlide + 1);
-  }, 6500);
-}
-carousel?.addEventListener('mouseenter', () => { carouselPaused = true; });
-carousel?.addEventListener('mouseleave', () => { carouselPaused = false; });
-carousel?.addEventListener('focusin', () => { carouselPaused = true; });
-carousel?.addEventListener('focusout', () => { carouselPaused = false; });
-
-async function loadPortfolio(){
-  if (!track) return;
-  try {
-    const response = await fetch('data/portfolio.json', {cache:'no-store'});
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    portfolioData = Array.isArray(data.works) ? data.works : [];
-  } catch(error){
-    console.error('Không thể tải data/portfolio.json:', error);
-    track.innerHTML = '<article class="work-slide"><div class="work-info"><h3>Portfolio đang được cập nhật.</h3><p>Vui lòng tải lại trang sau ít phút.</p></div></article>';
-    return;
-  }
-  renderCarousel();
-  startAutoplay();
-}
-
-loadPortfolio();
-
-const year = $('#year');
-if (year) year.textContent = new Date().getFullYear();
+function updateCarousel(animate=true){if(!track||!filteredWorks.length)return;track.style.transition=animate?'':'none';track.style.transform=`translateX(-${currentSlide*100}%)`;if(counter)counter.textContent=`${String(currentSlide+1).padStart(2,'0')} / ${String(filteredWorks.length).padStart(2,'0')}`;$$('.dot').forEach((dot,index)=>dot.classList.toggle('active',index===currentSlide));$$('.work-slide video').forEach(video=>{if(!video.closest('.work-slide')?.isSameNode($$('.work-slide')[currentSlide]))video.pause();});}
+function goToSlide(index){if(!filteredWorks.length)return;currentSlide=(index+filteredWorks.length)%filteredWorks.length;updateCarousel(true);}
+prevButton?.addEventListener('click',()=>goToSlide(currentSlide-1));nextButton?.addEventListener('click',()=>goToSlide(currentSlide+1));
+filters?.addEventListener('click',event=>{const button=event.target.closest('.filter-btn');if(!button)return;activeFilter=button.dataset.filter||'all';$$('.filter-btn',filters).forEach(btn=>btn.classList.toggle('active',btn===button));renderCarousel();startAutoplay();});
+let touchStartX=0;carousel?.addEventListener('touchstart',event=>{touchStartX=event.changedTouches[0].screenX},{passive:true});carousel?.addEventListener('touchend',event=>{const distance=event.changedTouches[0].screenX-touchStartX;if(Math.abs(distance)>50)goToSlide(currentSlide+(distance<0?1:-1));},{passive:true});carousel?.addEventListener('keydown',event=>{if(event.key==='ArrowLeft')goToSlide(currentSlide-1);if(event.key==='ArrowRight')goToSlide(currentSlide+1);});
+function startAutoplay(){if(reduceMotion||filteredWorks.length<2)return;clearInterval(autoplayTimer);autoplayTimer=setInterval(()=>{if(!carouselPaused&&document.visibilityState==='visible')goToSlide(currentSlide+1);},6500);}carousel?.addEventListener('mouseenter',()=>{carouselPaused=true});carousel?.addEventListener('mouseleave',()=>{carouselPaused=false});carousel?.addEventListener('focusin',()=>{carouselPaused=true});carousel?.addEventListener('focusout',()=>{carouselPaused=false});
+async function loadPortfolio(){if(!track)return;try{const response=await fetch('data/portfolio.json',{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const data=await response.json();portfolioData=Array.isArray(data.works)?data.works:[];}catch(error){console.error('Không thể tải data/portfolio.json:',error);track.innerHTML='<article class="work-slide"><div class="work-info"><h3>Portfolio đang được cập nhật.</h3><p>Vui lòng tải lại trang sau ít phút.</p></div></article>';return;}renderCarousel();startAutoplay();}
+loadPortfolio();const year=$('#year');if(year)year.textContent=new Date().getFullYear();
