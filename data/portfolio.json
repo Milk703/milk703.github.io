@@ -161,8 +161,8 @@
       "format": "Assessment Video",
       "tool": "Video Editing · Content",
       "description": "Video quay nội dung bài kiểm tra định kỳ, bổ sung nhóm sản phẩm thể hiện khả năng triển khai nội dung phục vụ hoạt động đánh giá học sinh.",
-      "type": "youtube",
-      "youtubeId": "",
+      "type": "external",
+      "externalLabel": "Facebook Video",
       "link": "https://www.facebook.com/share/v/1CHRyKKppK/"
     },
     {
@@ -183,8 +183,8 @@
       "format": "Vocabulary Reel",
       "tool": "Content · Video Editing",
       "description": "Reels ngắn về từ vựng, bổ sung định dạng video dọc cho nhóm nội dung social và khả năng triển khai nội dung ngắn, dễ tiêu thụ.",
-      "type": "youtube",
-      "youtubeId": "",
+      "type": "external",
+      "externalLabel": "Facebook Reel",
       "link": "https://www.facebook.com/share/r/1C2Gwms2ye/"
     }
   ]
