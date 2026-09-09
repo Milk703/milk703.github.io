@@ -99,6 +99,10 @@ function createMedia(item) {
     const thumb = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
     return `<a class="work-media youtube-media" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở video ${title}"><img src="${thumb}" alt="Thumbnail ${title}" loading="lazy"></a>`;
   }
+  if (item.type === 'external') {
+    const label = escapeHtml(item.externalLabel || item.platform || 'Mở nội dung');
+    return `<a class="work-media youtube-media external-media" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở nội dung ${title}"><span>${label} ↗</span></a>`;
+  }
   const src = escapeHtml(item.src || '');
   if (item.type === 'video') return `<video src="${src}" controls playsinline preload="metadata"></video>`;
   return `<img src="${src}" alt="${title}" loading="lazy">`;
@@ -137,7 +141,7 @@ function renderCarousel(){
   // Normalize the media wrapper so both image and YouTube cards fill the slide.
   $$('.work-media-wrap').forEach(wrapper => {
     const media = wrapper.firstElementChild;
-    if (media?.classList.contains('youtube-media')) wrapper.replaceWith(media);
+    if (media?.classList.contains('youtube-media') || media?.classList.contains('external-media')) wrapper.replaceWith(media);
     else wrapper.className = 'work-media';
   });
 
