@@ -2,18 +2,20 @@
   "works": [
     {
       "title": "Rising Stars – Cuộc thi thuyết trình đỉnh cao",
-      "category": "Social Content",
-      "format": "Thiết kế Social",
+      "category": "Campaign",
+      "platform": "Facebook",
+      "format": "Social Campaign",
       "tool": "Canva · Illustrator",
-      "description": "Key visual cho hoạt động truyền thông, tập trung vào thông điệp, màu sắc thương hiệu và khả năng thu hút người xem.",
+      "description": "Key visual cho hoạt động truyền thông, tập trung vào hierarchy, màu sắc thương hiệu và khả năng thu hút người xem trên social.",
       "type": "image",
       "src": "assets/rising-stars.png",
-      "link": "https://www.facebook.com/share/v/19HxdT9KN6/"
+      "link": "https://www.facebook.com/share/p/1TFHaVmYvZ/"
     },
     {
       "title": "Ưu đãi khóa học GoldMax",
       "category": "Campaign",
-      "format": "Thiết kế Social",
+      "platform": "Facebook",
+      "format": "Promotional Design",
       "tool": "Canva · Photoshop",
       "description": "Ấn phẩm truyền thông khuyến mãi với bố cục rõ ràng, màu sắc nổi bật và CTA dễ nhận biết.",
       "type": "image",
@@ -23,22 +25,101 @@
     {
       "title": "Recap hoạt động & sự kiện",
       "category": "Event Content",
-      "format": "Hình ảnh / Recap",
+      "platform": "Facebook",
+      "format": "Event Recap",
       "tool": "Premiere · Canva",
-      "description": "Tổng hợp hình ảnh hoạt động và sự kiện theo hướng trực quan, dễ xem và phù hợp với nội dung mạng xã hội.",
+      "description": "Nội dung recap hoạt động giữa thầy và trò, ưu tiên hình ảnh chân thực, cảm xúc và cách kể chuyện phù hợp với social.",
       "type": "image",
       "src": "assets/event-recap.png",
-      "link": "https://www.facebook.com/anhngugoldmax"
+      "link": "https://www.facebook.com/share/p/1TFHaVmYvZ/"
     },
     {
       "title": "Series từ vựng tiếng Anh",
       "category": "Educational Content",
+      "platform": "Facebook",
       "format": "Educational Social",
-      "tool": "Canva · Content Planning",
-      "description": "Series nội dung giáo dục được trình bày ngắn gọn, trực quan, giúp người học dễ tiếp cận và ghi nhớ.",
+      "tool": "Canva · Adobe Illustrator",
+      "description": "Series nội dung giáo dục được xây dựng theo hướng trực quan, dễ đọc và dễ ghi nhớ, phù hợp để phát triển thành chuỗi nội dung dài hạn.",
       "type": "image",
       "src": "assets/vocabulary.png",
-      "link": "https://www.facebook.com/anhngugoldmax"
+      "link": "https://www.facebook.com/share/p/1Bi49Z8Hn7/"
+    },
+    {
+      "title": "Topic 37: Appearance",
+      "category": "Educational Video",
+      "platform": "YouTube",
+      "format": "YouTube Video",
+      "tool": "Content Planning · Video Editing",
+      "description": "Video học tiếng Anh theo chủ đề Appearance, cho thấy khả năng phát triển nội dung giáo dục thành format video có cấu trúc rõ ràng.",
+      "type": "youtube",
+      "youtubeId": "_CaMZYk4jJ4",
+      "link": "https://www.youtube.com/watch?v=_CaMZYk4jJ4"
+    },
+    {
+      "title": "Topic 11: Shopping / Mua Sắm",
+      "category": "Educational Video",
+      "platform": "YouTube",
+      "format": "YouTube Video",
+      "tool": "Content Planning · Video Editing",
+      "description": "Một nội dung trong series học tiếng Anh qua các chủ đề, thể hiện khả năng xây dựng format nội dung có tính hệ thống.",
+      "type": "youtube",
+      "youtubeId": "DnkXrPzSmik",
+      "link": "https://www.youtube.com/watch?v=DnkXrPzSmik"
+    },
+    {
+      "title": "Topic 31: Health Problems",
+      "category": "Educational Video",
+      "platform": "YouTube",
+      "format": "YouTube Video",
+      "tool": "Content Planning · Video Editing",
+      "description": "Video giáo dục về chủ đề sức khỏe, bổ sung một góc nội dung khác trong hệ thống video học tiếng Anh theo chủ đề.",
+      "type": "youtube",
+      "youtubeId": "1JRlUkqfPTI",
+      "link": "https://www.youtube.com/watch?v=1JRlUkqfPTI"
+    },
+    {
+      "title": "Kỹ Năng Giao Tiếp – Ứng Xử",
+      "category": "Educational Video",
+      "platform": "YouTube",
+      "format": "Life Skills Video",
+      "tool": "Content Planning · Video Editing",
+      "description": "Nội dung kỹ năng sống dành cho học sinh, mở rộng hệ thống nội dung từ tiếng Anh sang giáo dục kỹ năng và phát triển toàn diện.",
+      "type": "youtube",
+      "youtubeId": "3nEdX8dTfi4",
+      "link": "https://www.youtube.com/watch?v=3nEdX8dTfi4"
+    },
+    {
+      "title": "Happy Birthday GoldMax English – 15 Years",
+      "category": "Brand Content",
+      "platform": "YouTube",
+      "format": "Brand Video",
+      "tool": "Content · Video Editing",
+      "description": "Video kỷ niệm thương hiệu, cho thấy khả năng triển khai nội dung video theo dịp đặc biệt và câu chuyện thương hiệu.",
+      "type": "youtube",
+      "youtubeId": "KCaZ1oE_oL8",
+      "link": "https://www.youtube.com/watch?v=KCaZ1oE_oL8"
+    },
+    {
+      "title": "Video nổi bật – GoldMax English",
+      "category": "Video Content",
+      "platform": "YouTube",
+      "format": "Featured Video",
+      "tool": "Video Editing · Content",
+      "description": "Một sản phẩm video nổi bật được chọn để thể hiện khả năng xây dựng nội dung và trình bày video trên YouTube.",
+      "type": "youtube",
+      "youtubeId": "bR__oJ1_Gy4",
+      "link": "https://youtu.be/bR__oJ1_Gy4?si=9GbUAiC10fqf2UTc"
+    },
+    {
+      "title": "Video nổi bật – GoldMax Bắc Giang",
+      "category": "Video Content",
+      "platform": "YouTube",
+      "format": "Featured Video",
+      "tool": "Video Editing · Content",
+      "description": "Sản phẩm video được chọn bổ sung từ hệ thống nội dung YouTube, giúp nhà tuyển dụng nhìn rõ hơn khả năng triển khai video cho từng kênh.",
+      "type": "youtube",
+      "youtubeId": "5GAV1rVqRbE",
+      "link": "https://youtu.be/5GAV1rVqRbE?si=Bym8k9q47JPWM9IR"
     }
   ]
 }
