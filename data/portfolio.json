@@ -20,7 +20,7 @@
       "description": "Ấn phẩm truyền thông khuyến mãi với bố cục rõ ràng, màu sắc nổi bật và CTA dễ nhận biết.",
       "type": "image",
       "src": "assets/promo.png",
-      "link": "https://www.facebook.com/share/v/1NYgMbjXcs/"
+      "link": "https://www.facebook.com/share/p/1C3y53TSSd/"
     },
     {
       "title": "Recap hoạt động & sự kiện",
@@ -31,7 +31,7 @@
       "description": "Nội dung recap hoạt động giữa thầy và trò, ưu tiên hình ảnh chân thực, cảm xúc và cách kể chuyện phù hợp với social.",
       "type": "image",
       "src": "assets/event-recap.png",
-      "link": "https://www.facebook.com/share/p/1TFHaVmYvZ/"
+      "link": "https://www.facebook.com/share/p/1J4VE4x1nQ/"
     },
     {
       "title": "Series từ vựng tiếng Anh",
@@ -100,6 +100,39 @@
       "link": "https://www.youtube.com/watch?v=KCaZ1oE_oL8"
     },
     {
+      "title": "Test Online – GoldMax English",
+      "category": "Assessment Content",
+      "platform": "YouTube",
+      "format": "Online Test Video",
+      "tool": "Content · Video Editing",
+      "description": "Video ghi lại nội dung kiểm tra online, bổ sung góc nhìn về khả năng triển khai nội dung phục vụ hoạt động học tập và đánh giá học sinh.",
+      "type": "youtube",
+      "youtubeId": "Ao7MECI5lAQ",
+      "link": "https://youtu.be/Ao7MECI5lAQ?si=YMNpaZzmDJ2d09wO"
+    },
+    {
+      "title": "Highlight trường tiểu học",
+      "category": "Event Content",
+      "platform": "YouTube",
+      "format": "School Highlight",
+      "tool": "Video Editing · Content",
+      "description": "Video highlight hoạt động tại trường tiểu học, thể hiện khả năng chọn lọc khoảnh khắc và kể chuyện bằng hình ảnh cho nội dung giáo dục.",
+      "type": "youtube",
+      "youtubeId": "vf6g5N9aYUY",
+      "link": "https://youtu.be/vf6g5N9aYUY?si=62auG7bFPnwgKned"
+    },
+    {
+      "title": "Kỹ năng sống – Nội dung nổi bật",
+      "category": "Life Skills",
+      "platform": "YouTube",
+      "format": "Life Skills Video",
+      "tool": "Content Planning · Video Editing",
+      "description": "Một nội dung kỹ năng sống nổi bật dành cho học sinh, giúp thể hiện khả năng mở rộng chủ đề và xây dựng nội dung giáo dục đa dạng.",
+      "type": "youtube",
+      "youtubeId": "l_lF10SKC7E",
+      "link": "https://youtu.be/l_lF10SKC7E?si=Q3rQXgysmWVqh6nu"
+    },
+    {
       "title": "Video nổi bật – GoldMax English",
       "category": "Video Content",
       "platform": "YouTube",
@@ -120,6 +153,39 @@
       "type": "youtube",
       "youtubeId": "5GAV1rVqRbE",
       "link": "https://youtu.be/5GAV1rVqRbE?si=Bym8k9q47JPWM9IR"
+    },
+    {
+      "title": "Bài kiểm tra định kỳ – Video",
+      "category": "Assessment Content",
+      "platform": "Facebook",
+      "format": "Assessment Video",
+      "tool": "Video Editing · Content",
+      "description": "Video quay nội dung bài kiểm tra định kỳ, bổ sung nhóm sản phẩm thể hiện khả năng triển khai nội dung phục vụ hoạt động đánh giá học sinh.",
+      "type": "youtube",
+      "youtubeId": "",
+      "link": "https://www.facebook.com/share/v/1CHRyKKppK/"
+    },
+    {
+      "title": "Series từ vựng – Nội dung Facebook",
+      "category": "Educational Content",
+      "platform": "Facebook",
+      "format": "Vocabulary Series",
+      "tool": "Canva · Content Planning",
+      "description": "Một series từ vựng bổ sung cho hệ thống nội dung giáo dục trên Facebook, giúp mở rộng nhóm sản phẩm social trong portfolio.",
+      "type": "image",
+      "src": "assets/vocabulary.png",
+      "link": "https://www.facebook.com/share/p/1GTKPtThPq/"
+    },
+    {
+      "title": "Reels từ vựng tiếng Anh",
+      "category": "Educational Video",
+      "platform": "Facebook",
+      "format": "Vocabulary Reel",
+      "tool": "Content · Video Editing",
+      "description": "Reels ngắn về từ vựng, bổ sung định dạng video dọc cho nhóm nội dung social và khả năng triển khai nội dung ngắn, dễ tiêu thụ.",
+      "type": "youtube",
+      "youtubeId": "",
+      "link": "https://www.facebook.com/share/r/1C2Gwms2ye/"
     }
   ]
 }
