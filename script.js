@@ -1,9 +1,11 @@
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-// Scroll reveal — nhẹ, mượt và tôn trọng prefers-reduced-motion.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Scroll reveal
 const revealItems = $$('.reveal');
-if ('IntersectionObserver' in window) {
+if ('IntersectionObserver' in window && !reduceMotion) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -16,7 +18,29 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach(item => item.classList.add('is-visible'));
 }
 
-// Mobile navigation.
+// Header + scroll progress
+const header = $('.site-header');
+const progress = $('#scroll-progress');
+function updateScrollUI(){
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  if (progress) progress.style.width = `${total > 0 ? (scrollTop / total) * 100 : 0}%`;
+  header?.classList.toggle('scrolled', scrollTop > 12);
+}
+window.addEventListener('scroll', updateScrollUI, {passive:true});
+updateScrollUI();
+
+// Soft cursor spotlight on desktop
+const glow = $('#cursor-glow');
+if (glow && window.matchMedia('(pointer:fine)').matches && !reduceMotion) {
+  window.addEventListener('pointermove', event => {
+    glow.style.left = `${event.clientX}px`;
+    glow.style.top = `${event.clientY}px`;
+    glow.style.opacity = '1';
+  }, {passive:true});
+}
+
+// Mobile navigation
 const menuToggle = $('#menu-toggle');
 const mainNav = $('#main-nav');
 if (menuToggle && mainNav) {
@@ -30,11 +54,28 @@ if (menuToggle && mainNav) {
   }));
 }
 
-// Escaping giúp nội dung trong data/portfolio.json không làm vỡ HTML.
+// Small 3D tilt for desktop cards
+if (!reduceMotion && window.matchMedia('(pointer:fine)').matches) {
+  $$('.tilt-card').forEach(card => {
+    card.addEventListener('pointermove', event => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      card.style.transform = `perspective(900px) rotateX(${(-y * 2.2).toFixed(2)}deg) rotateY(${(x * 2.2).toFixed(2)}deg) translateY(-6px)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
+
 function escapeHtml(value = '') {
   return String(value).replace(/[&<>'"]/g, char => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
   }[char]));
+}
+
+function safeUrl(value = '') {
+  const url = String(value).trim();
+  return /^(https?:\/\/|mailto:|tel:)/i.test(url) ? url : '#';
 }
 
 const track = $('#carousel-track');
@@ -43,107 +84,139 @@ const counter = $('#slide-counter');
 const prevButton = $('#prev-btn');
 const nextButton = $('#next-btn');
 const carousel = $('#work-carousel');
+const filters = $('#work-filters');
 let portfolioData = [];
+let filteredWorks = [];
 let currentSlide = 0;
+let activeFilter = 'all';
+let autoplayTimer = null;
+let carouselPaused = false;
 
 function createMedia(item) {
-  const src = escapeHtml(item.src);
   const title = escapeHtml(item.title);
-  if (item.type === 'video') {
-    return `<video src="${src}" controls playsinline preload="metadata"></video>`;
+  if (item.type === 'youtube' && item.youtubeId) {
+    const id = encodeURIComponent(item.youtubeId);
+    const thumb = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    return `<a class="work-media youtube-media" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở video ${title}"><img src="${thumb}" alt="Thumbnail ${title}" loading="lazy"></a>`;
   }
+  const src = escapeHtml(item.src || '');
+  if (item.type === 'video') return `<video src="${src}" controls playsinline preload="metadata"></video>`;
   return `<img src="${src}" alt="${title}" loading="lazy">`;
 }
 
-function renderCarousel() {
-  if (!track || !dots || !portfolioData.length) return;
+function getFilteredWorks(){
+  if (activeFilter === 'all') return [...portfolioData];
+  return portfolioData.filter(item => item.platform === activeFilter || item.category === activeFilter);
+}
 
-  track.innerHTML = portfolioData.map((item, index) => `
-    <article class="work-slide" aria-label="${index + 1} trên ${portfolioData.length}">
-      <div class="work-media">${createMedia(item)}</div>
+function renderCarousel(){
+  filteredWorks = getFilteredWorks();
+  currentSlide = 0;
+  if (!track || !dots) return;
+  if (!filteredWorks.length) {
+    track.innerHTML = '<article class="work-slide"><div class="work-info"><h3>Chưa có nội dung ở nhóm này.</h3><p>Nhóm dự án sẽ được cập nhật trong data/portfolio.json.</p></div></article>';
+    dots.innerHTML = '';
+    if (counter) counter.textContent = '00 / 00';
+    return;
+  }
+
+  track.innerHTML = filteredWorks.map((item, index) => `
+    <article class="work-slide" aria-label="${index + 1} trên ${filteredWorks.length}">
+      <div class="work-media-wrap">${createMedia(item)}</div>
       <div class="work-info">
-        <span class="work-number">${String(index + 1).padStart(2, '0')} / ${String(portfolioData.length).padStart(2, '0')}</span>
-        <span class="section-kicker" style="margin-top:14px">${escapeHtml(item.category || item.format || 'Selected Work')}</span>
+        <span class="work-number">${String(index + 1).padStart(2, '0')} / ${String(filteredWorks.length).padStart(2, '0')}</span>
+        <span class="section-kicker" style="margin-top:14px">${escapeHtml(item.platform || 'Selected Work')} · ${escapeHtml(item.category || 'Content')}</span>
         <h3>${escapeHtml(item.title)}</h3>
         <p>${escapeHtml(item.description)}</p>
         <p class="work-meta"><strong>Định dạng:</strong> ${escapeHtml(item.format || '—')}<br><strong>Công cụ:</strong> ${escapeHtml(item.tool || '—')}</p>
-        ${item.link ? `<a class="btn btn-primary work-link" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">Xem nội dung ↗</a>` : ''}
+        ${item.link ? `<a class="btn btn-primary work-link" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener">Xem nội dung ↗</a>` : ''}
       </div>
     </article>
   `).join('');
 
-  dots.innerHTML = portfolioData.map((item, index) => `
-    <button class="dot ${index === currentSlide ? 'active' : ''}" aria-label="Xem tác phẩm ${index + 1}" data-slide="${index}"></button>
-  `).join('');
+  // Normalize the media wrapper so both image and YouTube cards fill the slide.
+  $$('.work-media-wrap').forEach(wrapper => {
+    const media = wrapper.firstElementChild;
+    if (media?.classList.contains('youtube-media')) wrapper.replaceWith(media);
+    else wrapper.className = 'work-media';
+  });
 
+  dots.innerHTML = filteredWorks.map((item, index) => `<button class="dot ${index === 0 ? 'active' : ''}" aria-label="Xem tác phẩm ${index + 1}" data-slide="${index}"></button>`).join('');
   $$('.dot').forEach(dot => dot.addEventListener('click', () => goToSlide(Number(dot.dataset.slide))));
   updateCarousel(false);
 }
 
-function updateCarousel(animate = true) {
-  if (!track || !portfolioData.length) return;
+function updateCarousel(animate = true){
+  if (!track || !filteredWorks.length) return;
   track.style.transition = animate ? '' : 'none';
   track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  if (counter) counter.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(portfolioData.length).padStart(2, '0')}`;
+  if (counter) counter.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(filteredWorks.length).padStart(2, '0')}`;
   $$('.dot').forEach((dot, index) => dot.classList.toggle('active', index === currentSlide));
-
-  // Dừng video ở slide cũ khi chuyển trang.
   $$('.work-slide video').forEach(video => {
-    if (!video.closest('.work-slide')?.isSameNode($$('.work-slide')[currentSlide])) {
-      video.pause();
-    }
+    if (!video.closest('.work-slide')?.isSameNode($$('.work-slide')[currentSlide])) video.pause();
   });
 }
 
-function goToSlide(index) {
-  if (!portfolioData.length) return;
-  currentSlide = (index + portfolioData.length) % portfolioData.length;
+function goToSlide(index){
+  if (!filteredWorks.length) return;
+  currentSlide = (index + filteredWorks.length) % filteredWorks.length;
   updateCarousel(true);
 }
 
 prevButton?.addEventListener('click', () => goToSlide(currentSlide - 1));
 nextButton?.addEventListener('click', () => goToSlide(currentSlide + 1));
 
-// Vuốt trên điện thoại.
-let touchStartX = 0;
-let touchEndX = 0;
-carousel?.addEventListener('touchstart', event => {
-  touchStartX = event.changedTouches[0].screenX;
-}, { passive: true });
-carousel?.addEventListener('touchend', event => {
-  touchEndX = event.changedTouches[0].screenX;
-  const distance = touchEndX - touchStartX;
-  if (Math.abs(distance) > 50) goToSlide(currentSlide + (distance < 0 ? 1 : -1));
-}, { passive: true });
+// Filters
+filters?.addEventListener('click', event => {
+  const button = event.target.closest('.filter-btn');
+  if (!button) return;
+  activeFilter = button.dataset.filter || 'all';
+  $$('.filter-btn', filters).forEach(btn => btn.classList.toggle('active', btn === button));
+  renderCarousel();
+});
 
-// Bàn phím khi con trỏ đang ở khu vực portfolio.
+// Touch / keyboard navigation
+let touchStartX = 0;
+carousel?.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].screenX; }, {passive:true});
+carousel?.addEventListener('touchend', event => {
+  const distance = event.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(distance) > 50) goToSlide(currentSlide + (distance < 0 ? 1 : -1));
+}, {passive:true});
 carousel?.addEventListener('keydown', event => {
   if (event.key === 'ArrowLeft') goToSlide(currentSlide - 1);
   if (event.key === 'ArrowRight') goToSlide(currentSlide + 1);
 });
 
-async function loadPortfolio() {
+// Gentle autoplay. It pauses while the recruiter is interacting with the carousel.
+function startAutoplay(){
+  if (reduceMotion || filteredWorks.length < 2) return;
+  clearInterval(autoplayTimer);
+  autoplayTimer = setInterval(() => {
+    if (!carouselPaused && document.visibilityState === 'visible') goToSlide(currentSlide + 1);
+  }, 6500);
+}
+carousel?.addEventListener('mouseenter', () => { carouselPaused = true; });
+carousel?.addEventListener('mouseleave', () => { carouselPaused = false; });
+carousel?.addEventListener('focusin', () => { carouselPaused = true; });
+carousel?.addEventListener('focusout', () => { carouselPaused = false; });
+
+async function loadPortfolio(){
   if (!track) return;
   try {
-    const response = await fetch('data/portfolio.json', { cache: 'no-store' });
+    const response = await fetch('data/portfolio.json', {cache:'no-store'});
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     portfolioData = Array.isArray(data.works) ? data.works : [];
-  } catch (error) {
+  } catch(error){
     console.error('Không thể tải data/portfolio.json:', error);
-    track.innerHTML = '<div class="work-slide"><div class="work-info"><h3>Portfolio đang được cập nhật.</h3><p>Vui lòng tải lại trang sau ít phút.</p></div></div>';
+    track.innerHTML = '<article class="work-slide"><div class="work-info"><h3>Portfolio đang được cập nhật.</h3><p>Vui lòng tải lại trang sau ít phút.</p></div></article>';
     return;
   }
-  if (!portfolioData.length) {
-    track.innerHTML = '<div class="work-slide"><div class="work-info"><h3>Chưa có tác phẩm.</h3><p>Nội dung sẽ được cập nhật trong data/portfolio.json.</p></div></div>';
-    return;
-  }
-  if (counter) counter.textContent = `01 / ${String(portfolioData.length).padStart(2, '0')}`;
   renderCarousel();
+  startAutoplay();
 }
 
 loadPortfolio();
 
-// Năm hiện tại ở footer.
 const year = $('#year');
 if (year) year.textContent = new Date().getFullYear();
