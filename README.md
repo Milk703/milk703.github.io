@@ -5,87 +5,134 @@ Portfolio web tĩnh dành cho hồ sơ Content Marketing / Content Creator, tri�
 ## Cấu trúc nội dung
 
 - `index.html` — cấu trúc và nội dung giao diện.
-- `style.css` — giao diện responsive, typography, hover/tilt, reveal, theme và các hiệu ứng micro-interaction.
-- `script.js` — menu mobile, theme toggle, scroll UI và hệ thống render portfolio theo category/collection.
-- `data/portfolio.json` — **danh sách tác phẩm**. Đây là nơi cập nhật tên, mô tả, category, collection, định dạng, công cụ và đường dẫn của từng tác phẩm.
-- `assets/` — hình ảnh, video và icon được website sử dụng.
+- `style.css` — giao diện responsive, typography, hover/tilt, reveal, theme và hiệu ứng ánh sáng.
+- `script.js` — menu mobile, theme toggle, scroll UI và hệ thống render portfolio theo collection.
+- `data/portfolio.json` — danh sách tác phẩm. Mỗi tác phẩm được gắn vào đúng collection.
+- `assets/` — hình ảnh, video và icon.
 
-## Hệ thống Portfolio 03 / Dự án & Sản phẩm nội dung
+## Section 03 / Dự án & Sản phẩm nội dung
 
-Phần Selected Work được tổ chức theo nhóm để nhà tuyển dụng có thể lọc nhanh:
+Portfolio được tách thành các **collection độc lập**, lấy cảm hứng từ kiểu trình bày portfolio video có từng khối lớn riêng:
 
-- Documentary
-- Bất động sản
-- Short-form
-- YouTube Kids
-- Reelshort Ads
-- Social & Campaign
-- Educational
+1. Documentary
+2. Bất động sản
+3. Short Drama
+4. YouTube Kids
+5. Reelshort Ads
+6. YouTube
+7. Social / Campaign
 
-Ngoài bộ lọc chính, **YouTube Kids** và **Reelshort Ads** có grid riêng ở phía dưới Section 03 để tách thành các collection chuyên biệt.
+Mỗi collection có:
+- tiêu đề riêng
+- số lượng project riêng
+- grid riêng
+- vùng trạng thái trống riêng khi chưa có project
+- hiệu ứng glow khi đưa chuột vào
+- hiệu ứng nổi/lift khi hover
+- ánh sáng chạy theo vị trí chuột
+- reveal khi collection/card xuất hiện trong viewport
 
-## Thêm video vào YouTube Kids / Reelshort Ads
+## Cách thêm layer vào từng collection
 
-Trong `data/portfolio.json`, thêm object mới vào mảng `works`.
+Bạn không cần sửa HTML thủ công.
 
-Ví dụ cho YouTube Kids:
+Chỉ cần upload video/image vào `assets/`, sau đó thêm một object vào `data/portfolio.json` với đúng giá trị `collection`.
+
+### Documentary
 
 ```json
 {
-  "title": "Tên video Kids",
-  "category": "YouTube Kids",
+  "title": "Tên documentary",
+  "category": "Documentary",
   "platform": "YouTube",
-  "format": "Kids Video",
+  "format": "Documentary",
   "tool": "Premiere · After Effects",
-  "description": "Mô tả ngắn về vai trò và nội dung.",
+  "description": "Mô tả ngắn về nội dung và vai trò.",
   "type": "youtube",
-  "collection": "youtube-kids",
+  "collection": "documentary",
   "youtubeId": "VIDEO_ID",
   "link": "https://www.youtube.com/watch?v=VIDEO_ID"
 }
 ```
 
-Ví dụ cho Reelshort Ads:
+### Bất động sản
 
 ```json
 {
-  "title": "Tên Reelshort Ad",
-  "category": "Reelshort Ads",
-  "platform": "Reelshort",
-  "format": "Vertical Ad",
+  "title": "Tên video bất động sản",
+  "category": "Bất động sản",
+  "platform": "YouTube",
+  "format": "Real Estate Video",
   "tool": "Premiere · After Effects",
-  "description": "Mô tả ngắn về format, hook hoặc mục tiêu creative.",
-  "type": "external",
-  "collection": "reelshort-ads",
-  "externalLabel": "Reelshort Ad",
-  "link": "https://..."
+  "description": "Mô tả ngắn.",
+  "type": "youtube",
+  "collection": "real-estate",
+  "youtubeId": "VIDEO_ID",
+  "link": "https://www.youtube.com/watch?v=VIDEO_ID"
 }
 ```
 
-Với YouTube, giao diện tự lấy thumbnail từ YouTube. Với link ngoài, giao diện hiển thị card creative và nút mở nội dung gốc.
+### Short Drama
 
-## Cách cập nhật tác phẩm nói chung
+Dùng:
 
-1. Upload file hình ảnh/video mới vào `assets/` nếu cần.
-2. Mở `data/portfolio.json`.
-3. Thêm một object mới vào mảng `works`.
-4. Commit thay đổi lên `main`.
+```json
+"collection": "short-drama"
+```
+
+### YouTube Kids
+
+Dùng:
+
+```json
+"collection": "youtube-kids"
+```
+
+### Reelshort Ads
+
+Dùng:
+
+```json
+"collection": "reelshort-ads"
+```
+
+### YouTube
+
+Dùng:
+
+```json
+"collection": "youtube"
+```
+
+### Social / Campaign
+
+Dùng:
+
+```json
+"collection": "social"
+```
+
+## Hiệu ứng Section 03
+
+Mỗi collection hoạt động như một khối portfolio riêng. Khi scroll tới collection, khối có ánh sáng nền nhẹ. Khi hover:
+
+- border chuyển sang accent vàng
+- shadow mở rộng
+- toàn khối nhấc lên nhẹ
+- radial glow bám theo vị trí con trỏ
+- card bên trong cũng có hover lift và thumbnail zoom
+
+Thiết kế này cố tình giữ tinh thần reference video-editor portfolio nhưng vẫn dùng hệ màu hiện tại của portfolio Phan Nhật Tuấn.
+
+## Cập nhật tác phẩm
+
+1. Upload asset vào `assets/` nếu cần.
+2. Thêm object vào `data/portfolio.json`.
+3. Gắn đúng `collection`.
+4. Commit lên `main`.
 
 GitHub Pages sẽ triển khai phiên bản mới theo cấu hình của repository.
 
-## Nội dung hiện có
-
-- 3 kênh Facebook GoldMax
-- 2 kênh YouTube GoldMax
-- Các tác phẩm social/campaign
-- Video YouTube giáo dục, thương hiệu và hoạt động
-- Bộ lọc portfolio theo format/category
-- Grid riêng cho YouTube Kids và Reelshort Ads sẵn sàng nhận nội dung mới
-- Theme Light/Dark, scroll reveal, cursor glow và hover interactions
-- Quy trình làm việc 5 bước
-- Số điện thoại: 0559.810.191
-- Email: tuannhat704@gmail.com
-
 ## Lưu ý
 
-Đây là website tĩnh. Khách truy cập không thể tự ghi file vào GitHub từ giao diện public. Việc thêm tác phẩm được thực hiện bằng cách cập nhật `assets/` và `data/portfolio.json` trong repository, sau đó GitHub Pages triển khai lại.
+Đây là website tĩnh. Không có chức năng public để khách truy cập tự ghi file vào GitHub. Việc thêm layer/project được thực hiện từ repository thông qua `assets/` và `data/portfolio.json`.
