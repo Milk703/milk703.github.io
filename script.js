@@ -130,9 +130,13 @@ function cardFor(item,index,featured=false){
 }
 
 function collectionCardFor(item){
+  const media = mediaFor(item);
   const link = item.link ? `<a href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener">Xem video ↗</a>` : '<span></span>';
   return `<article class="collection-card">
-    <div class="collection-media"></div>
+    <div class="collection-media collection-media-real">
+      ${media}
+      <span class="collection-play" aria-hidden="true">▶</span>
+    </div>
     <div class="collection-card-body">
       <span class="mini-label">${escapeHtml(item.format || item.platform || 'Video')}</span>
       <h4>${escapeHtml(item.title)}</h4>
@@ -152,6 +156,8 @@ let activeFilter = 'all';
 
 function filterWorks(filter){
   if(filter==='all') return portfolioData;
+  if(filter==='YouTube Kids') return portfolioData.filter(item=>item.collection==='youtube-kids' || item.category==='YouTube Kids');
+  if(filter==='Reelshort Ads') return portfolioData.filter(item=>item.collection==='reelshort-ads' || item.category==='Reelshort Ads');
   return portfolioData.filter(item=>item.category===filter);
 }
 
@@ -181,7 +187,7 @@ function renderMainWorks(){
     workView.innerHTML = `<div class="work-empty"><div class="work-empty-inner">
       <span class="empty-kicker">CONTENT SLOT</span>
       <h3>${escapeHtml(activeFilter)} đang chờ được bổ sung.</h3>
-      <p>Thêm video vào <code>data/portfolio.json</code> và chọn đúng category. Layout sẽ tự đưa nội dung vào đúng nhóm.</p>
+      <p>Thêm video vào <code>data/portfolio.json</code> và chọn đúng category / collection. Layout sẽ tự đưa nội dung vào đúng nhóm.</p>
     </div></div>`;
     return;
   }
@@ -203,7 +209,7 @@ function renderCollection(grid, collectionKey, title){
   if(!items.length){
     grid.innerHTML = `<div class="collection-empty"><div class="collection-empty-inner">
       <div class="empty-title">Chưa có video trong ${escapeHtml(title)}</div>
-      <p>Khi bạn có video phù hợp, thêm item vào <code>data/portfolio.json</code> với <code>"collection": "${collectionKey}"</code>. Website sẽ tự render thành card trong grid này.</p>
+      <p>Khi bạn có video phù hợp, thêm item vào <code>data/portfolio.json</code> với <code>"collection": "${collectionKey}"</code>. Thumbnail / video card sẽ tự render trong grid này.</p>
     </div></div>`;
     return;
   }
