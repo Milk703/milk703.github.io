@@ -4,7 +4,7 @@ Portfolio web tĩnh dành cho hồ sơ Content Marketing / Content Creator, tri�
 
 ## Section 03 / Dự án & Sản phẩm nội dung
 
-Section 03 được chia thành các **collection / grid độc lập**, theo đúng hướng portfolio video-editor:
+Section 03 được chia thành các nhóm nội dung riêng để người xem dễ theo dõi:
 
 1. Documentary
 2. Bất động sản
@@ -43,7 +43,7 @@ Mục **Short / Drama Ads** hiện chứa 5 video YouTube Shorts, với mô tả
 
 Mục **Documentary** có thêm 2 video YouTube Shorts mới.
 
-Các nhóm được tách riêng để người xem dễ theo dõi từng hướng dựng và nội dung.
+Các nhóm giúp thể hiện nhiều dạng công việc và cách xử lý khác nhau trong portfolio.
 
 ## Cấu trúc dữ liệu
 
@@ -53,30 +53,7 @@ Các nhóm được tách riêng để người xem dễ theo dõi từng hướ
 - `data/portfolio.json` — dữ liệu project.
 - `assets/` — media.
 
-Mỗi project dùng trường `collection` để website tự đưa nội dung vào đúng grid.
-
-Ví dụ:
-
-```json
-"collection": "documentary"
-```
-
-```json
-"collection": "real-estate"
-```
-
-```json
-"collection": "short-drama"
-```
-
-
-```json
-"collection": "goldmax-youtube"
-```
-
-```json
-"collection": "goldmax-facebook"
-```
+Mỗi project được sắp xếp vào đúng nhóm nội dung tương ứng trong portfolio.
 
 ## Hiệu ứng
 
