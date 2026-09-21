@@ -1,6 +1,30 @@
 {
   "works": [
     {
+      "title": "Documentary Short #01 — Story Cut",
+      "category": "Documentary",
+      "platform": "YouTube",
+      "format": "Documentary Short",
+      "tool": "Video Editing · Storytelling · Pacing",
+      "description": "Dựng theo hướng kể chuyện bằng hình ảnh, ưu tiên chọn shot có thông tin và sắp xếp theo mạch rõ ràng. Nhịp cắt được giữ vừa phải, có điểm nghỉ để hình ảnh và cảm xúc tự dẫn câu chuyện.",
+      "type": "youtube",
+      "collection": "documentary",
+      "youtubeId": "Hqgmv1Gk5tk",
+      "link": "https://youtube.com/shorts/Hqgmv1Gk5tk?feature=share"
+    },
+    {
+      "title": "Documentary Short #02 — Visual Storytelling",
+      "category": "Documentary",
+      "platform": "YouTube",
+      "format": "Documentary Short",
+      "tool": "Video Editing · B-roll · Pacing",
+      "description": "Tập trung vào flow của footage: mở bối cảnh, đi vào chi tiết rồi đẩy cảm xúc ở đúng điểm. B-roll và cutaway được dùng để nối ý tự nhiên, giúp video ngắn nhưng vẫn có chiều sâu.",
+      "type": "youtube",
+      "collection": "documentary",
+      "youtubeId": "Gxx__zPxjso",
+      "link": "https://youtube.com/shorts/Gxx__zPxjso?feature=share"
+    },
+    {
       "title": "Real Estate Video #01 — Property Showcase",
       "category": "Real Estate",
       "platform": "YouTube",
