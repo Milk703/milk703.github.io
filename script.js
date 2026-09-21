@@ -108,132 +108,111 @@ function mediaFor(item){
   return `<img src="${escapeHtml(item.src || '')}" alt="${title}" loading="lazy">`;
 }
 
-function cardFor(item,index,featured=false){
-  const link=item.link ? `<a class="work-card" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở ${escapeHtml(item.title)}">` : '<article class="work-card">';
-  const close = item.link ? '</a>' : '</article>';
-  return `${link}
-    <div class="work-card-media">
-      ${mediaFor(item)}
-      <span class="work-card-badge">${escapeHtml(item.platform || item.category || 'Selected Work')}</span>
-      ${item.type==='youtube' || item.type==='external' ? '<span class="work-card-arrow" aria-hidden="true">↗</span>' : ''}
-    </div>
-    <div class="work-card-body">
-      <span class="mini-label">${String(index+1).padStart(2,'0')} · ${escapeHtml(item.category || 'Content')}</span>
-      <h3>${escapeHtml(item.title)}</h3>
-      <p>${escapeHtml(item.description || '')}</p>
-      <div class="work-card-meta">
-        <span>${escapeHtml(item.format || 'Content')}</span>
-        <span>${escapeHtml(item.tool || '—')}</span>
-      </div>
-    </div>
-  ${close}`.replace('class="work-card"',`class="work-card${featured ? ' featured':''}"`);
-}
+const collections=[
+  {key:'documentary',label:'Documentary',number:'01',description:'Video kể chuyện, tư liệu, recap, interview hoặc long-form documentary.'},
+  {key:'real-estate',label:'Bất động sản',number:'02',description:'Video bất động sản, aerial, property showcase, project story và sales content.'},
+  {key:'short-drama',label:'Short Drama',number:'03',description:'Nội dung drama ngắn, storytelling dọc, short-form diễn xuất và các concept có nhịp kể nhanh.'},
+  {key:'youtube-kids',label:'YouTube Kids',number:'04',description:'Khu vực riêng cho Kids content, animation, family-friendly và video YouTube hướng tới trẻ em.'},
+  {key:'reelshort-ads',label:'Reelshort Ads',number:'05',description:'Khu vực riêng cho vertical ads, performance creative và quảng cáo dạng Reelshort.'},
+  {key:'youtube',label:'YouTube',number:'06',description:'Video YouTube hiện có: giáo dục, thương hiệu, hoạt động và nội dung theo chủ đề.'},
+  {key:'social',label:'Social / Campaign',number:'07',description:'Social content, campaign, event recap và visual content đã triển khai.'}
+];
 
-function collectionCardFor(item){
-  const media = mediaFor(item);
-  const link = item.link ? `<a href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener">Xem video ↗</a>` : '<span></span>';
-  return `<article class="collection-card">
-    <div class="collection-media collection-media-real">
-      ${media}
-      <span class="collection-play" aria-hidden="true">▶</span>
-    </div>
+function cardFor(item,index,collectionLabel){
+  const title=escapeHtml(item.title);
+  const inner=`<div class="collection-card-media">${mediaFor(item)}<span class="collection-card-badge">${escapeHtml(item.platform || collectionLabel)}</span><span class="collection-card-arrow" aria-hidden="true">${item.link?'↗':'+'}</span></div>
     <div class="collection-card-body">
-      <span class="mini-label">${escapeHtml(item.format || item.platform || 'Video')}</span>
-      <h4>${escapeHtml(item.title)}</h4>
+      <span class="collection-card-index">${String(index+1).padStart(2,'0')} · ${escapeHtml(item.format || item.category || collectionLabel)}</span>
+      <h4>${title}</h4>
       <p>${escapeHtml(item.description || '')}</p>
-      ${link}
+      <div class="collection-card-meta"><span>${escapeHtml(item.format || 'Video')}</span><span>${escapeHtml(item.tool || '—')}</span></div>
+    </div>`;
+  return item.link?`<a class="collection-card" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở ${title}">${inner}</a>`:`<article class="collection-card">${inner}</article>`;
+}
+
+const stack=$('#collections-stack');
+const collectionIndex=$('#collection-index');
+const totalEl=$('#work-total');
+let portfolioData=[];
+
+function collectionItems(key){
+  const legacyMap={
+    'short-drama':['short-drama','short-form'],
+    'social':['social','social-campaign'],
+    'youtube':['youtube'],
+    'documentary':['documentary'],
+    'real-estate':['real-estate'],
+    'youtube-kids':['youtube-kids'],
+    'reelshort-ads':['reelshort-ads']
+  };
+  const accepted=legacyMap[key]||[key];
+  return portfolioData.filter(item=>accepted.includes(item.collection)||accepted.includes(item.category));
+}
+
+function renderCollection(collection,index){
+  const items=collectionItems(collection.key);
+  const cards=items.length
+    ? items.map((item,i)=>collectionCardFor(item,i,collection.label)).join('')
+    : `<div class="collection-empty"><span class="collection-empty-kicker">CONTENT SLOT · ${collection.number}</span><h4>Thêm layer cho ${escapeHtml(collection.label)}</h4><p>Upload video/image vào <code>assets/</code>, sau đó thêm một item với <code>"collection": "${collection.key}"</code> trong <code>data/portfolio.json</code>.</p><div class="collection-empty-chip">Ready for your next project ↗</div></div>`;
+  return `<section class="portfolio-collection portfolio-collection-${collection.key}" id="collection-${collection.key}" data-collection="${collection.key}">
+    <div class="collection-heading">
+      <div class="collection-title-wrap"><span class="collection-kicker">COLLECTION ${collection.number}</span><h3>${escapeHtml(collection.label)}</h3></div>
+      <div class="collection-side"><span class="collection-count">${String(items.length).padStart(2,'0')} projects</span><p>${escapeHtml(collection.description)}</p></div>
     </div>
-  </article>`;
+    <div class="collection-divider"></div>
+    <div class="collection-grid">${cards}</div>
+  </section>`;
 }
 
-const workView = $('#work-category-view');
-const workNav = $('#work-category-nav');
-const totalEl = $('#work-total');
-const kidsGrid = $('#youtube-kids-grid');
-const adsGrid = $('#reelshort-ads-grid');
-let portfolioData = [];
-let activeFilter = 'all';
-
-function filterWorks(filter){
-  if(filter==='all') return portfolioData;
-  if(filter==='YouTube Kids') return portfolioData.filter(item=>item.collection==='youtube-kids' || item.category==='YouTube Kids');
-  if(filter==='Reelshort Ads') return portfolioData.filter(item=>item.collection==='reelshort-ads' || item.category==='Reelshort Ads');
-  return portfolioData.filter(item=>item.category===filter);
+function renderCollectionIndex(){
+  if(!collectionIndex) return;
+  collectionIndex.innerHTML=collections.map(c=>`<a class="collection-index-link" href="#collection-${c.key}"><span>${c.number}</span>${escapeHtml(c.label)}</a>`).join('');
 }
 
-function revealWorkCards(){
-  const cards=$$('.work-card,.collection-card');
-  if(reduceMotion){
-    cards.forEach(card=>card.classList.add('is-in'));
-    return;
-  }
-  const obs = new IntersectionObserver((entries,observer)=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
-      entry.target.classList.add('is-in');
-      observer.unobserve(entry.target);
+function bindCollectionGlow(){
+  $$('.portfolio-collection').forEach(section=>{
+    section.addEventListener('pointermove',event=>{
+      const rect=section.getBoundingClientRect();
+      section.style.setProperty('--mx',`${((event.clientX-rect.left)/rect.width)*100}%`);
+      section.style.setProperty('--my',`${((event.clientY-rect.top)/rect.height)*100}%`);
     });
-  },{threshold:.08});
-  cards.forEach((card,index)=>{
-    card.style.transitionDelay = `${Math.min(index,7)*55}ms`;
-    obs.observe(card);
   });
+  if('IntersectionObserver' in window){
+    const sectionObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>entry.target.classList.toggle('in-view',entry.isIntersecting));
+    },{threshold:.2});
+    $$('.portfolio-collection').forEach(section=>sectionObserver.observe(section));
+  }
 }
 
-function renderMainWorks(){
-  const works=filterWorks(activeFilter);
-  if(!workView) return;
-  if(!works.length){
-    workView.innerHTML = `<div class="work-empty"><div class="work-empty-inner">
-      <span class="empty-kicker">CONTENT SLOT</span>
-      <h3>${escapeHtml(activeFilter)} đang chờ được bổ sung.</h3>
-      <p>Thêm video vào <code>data/portfolio.json</code> và chọn đúng category / collection. Layout sẽ tự đưa nội dung vào đúng nhóm.</p>
-    </div></div>`;
-    return;
-  }
-
-  workView.innerHTML = works.map((item,index)=>cardFor(item,index,index===0 && activeFilter==='all')).join('');
-  $$('.work-card',workView).forEach(card=>{
+function bindCardGlow(){
+  $$('.collection-card').forEach(card=>{
     card.addEventListener('pointermove',event=>{
       const rect=card.getBoundingClientRect();
       card.style.setProperty('--mx',`${((event.clientX-rect.left)/rect.width)*100}%`);
       card.style.setProperty('--my',`${((event.clientY-rect.top)/rect.height)*100}%`);
     });
   });
-  revealWorkCards();
-}
-
-function renderCollection(grid, collectionKey, title){
-  if(!grid) return;
-  const items=portfolioData.filter(item=>item.collection===collectionKey);
-  if(!items.length){
-    grid.innerHTML = `<div class="collection-empty"><div class="collection-empty-inner">
-      <div class="empty-title">Chưa có video trong ${escapeHtml(title)}</div>
-      <p>Khi bạn có video phù hợp, thêm item vào <code>data/portfolio.json</code> với <code>"collection": "${collectionKey}"</code>. Thumbnail / video card sẽ tự render trong grid này.</p>
-    </div></div>`;
-    return;
-  }
-  grid.innerHTML=items.map(collectionCardFor).join('');
-  revealWorkCards();
+  if(reduceMotion) return;
+  $$('.collection-card').forEach(card=>{
+    card.addEventListener('pointerenter',()=>card.classList.add('is-hot'));
+    card.addEventListener('pointerleave',()=>card.classList.remove('is-hot'));
+  });
 }
 
 function renderPortfolio(){
-  if(totalEl) totalEl.textContent=String(portfolioData.length).padStart(2,'0');
-  renderMainWorks();
-  renderCollection(kidsGrid,'youtube-kids','YouTube Kids');
-  renderCollection(adsGrid,'reelshort-ads','Reelshort Ads');
+  if(totalEl){
+    const total=portfolioData.reduce((sum,item)=>sum+(item.collection?1:0),0);
+    totalEl.textContent=String(total||portfolioData.length).padStart(2,'0');
+  }
+  if(stack) stack.innerHTML=collections.map(renderCollection).join('');
+  renderCollectionIndex();
+  bindCollectionGlow();
+  bindCardGlow();
 }
 
-workNav?.addEventListener('click',event=>{
-  const button=event.target.closest('.filter-btn');
-  if(!button) return;
-  activeFilter=button.dataset.filter || 'all';
-  $$('.filter-btn',workNav).forEach(btn=>btn.classList.toggle('active',btn===button));
-  renderMainWorks();
-});
-
 async function loadPortfolio(){
-  if(!workView) return;
+  if(!stack) return;
   try{
     const response=await fetch('data/portfolio.json',{cache:'no-store'});
     if(!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -242,8 +221,6 @@ async function loadPortfolio(){
   }catch(error){
     console.error('Không thể tải data/portfolio.json:',error);
     portfolioData=[];
-    workView.innerHTML='<div class="work-empty"><div class="work-empty-inner"><span class="empty-kicker">PORTFOLIO DATA</span><h3>Không thể tải portfolio data.</h3><p>Kiểm tra file <code>data/portfolio.json</code> và thử tải lại trang.</p></div></div>';
-    return;
   }
   renderPortfolio();
 }
