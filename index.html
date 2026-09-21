@@ -100,7 +100,7 @@
         <div>
           <p class="section-kicker">03 / DỰ ÁN &amp; SẢN PHẨM NỘI DUNG</p>
           <h2>Selected Work</h2>
-          <p class="section-subtext">Tôi tách portfolio theo format để nhà tuyển dụng nhìn nhanh vào đúng kiểu video / nội dung đang cần: Documentary, Bất động sản, Short-form và các collection chuyên biệt.</p>
+          <p class="section-subtext">Mỗi nhóm dưới đây là một collection độc lập. Khi có video mới, bạn chỉ cần thêm item vào đúng collection — không cần gộp các lĩnh vực vào cùng một khối.</p>
         </div>
         <div class="work-index">
           <span>PORTFOLIO INDEX</span>
@@ -110,39 +110,13 @@
       </div>
 
       <div class="work-marquee" aria-hidden="true">
-        <span>DOCUMENTARY</span><i>✦</i><span>BẤT ĐỘNG SẢN</span><i>✦</i><span>SHORT-FORM</span><i>✦</i><span>YOUTUBE KIDS</span><i>✦</i><span>REELSHORT ADS</span>
+        <span>DOCUMENTARY</span><i>✦</i><span>BẤT ĐỘNG SẢN</span><i>✦</i><span>SHORT DRAMA</span><i>✦</i><span>YOUTUBE KIDS</span><i>✦</i><span>REELSHORT ADS</span>
       </div>
 
-      <div class="work-category-nav" id="work-category-nav" aria-label="Lọc nhóm dự án">
-        <button class="filter-btn active" data-filter="all">Tất cả</button>
-        <button class="filter-btn" data-filter="Documentary">Documentary</button>
-        <button class="filter-btn" data-filter="Bất động sản">Bất động sản</button>
-        <button class="filter-btn" data-filter="Short-form">Short-form</button>
-        <button class="filter-btn" data-filter="YouTube Kids">YouTube Kids</button>
-        <button class="filter-btn" data-filter="Reelshort Ads">Reelshort Ads</button>
-        <button class="filter-btn" data-filter="Social & Campaign">Social &amp; Campaign</button>
-        <button class="filter-btn" data-filter="Educational">Educational</button>
-      </div>
+      <div class="collection-index" id="collection-index" aria-label="Đi tới collection"></div>
+      <div class="collections-stack" id="collections-stack"></div>
 
-      <div class="work-category-view" id="work-category-view"></div>
-
-      <div class="portfolio-collection" id="youtube-kids-collection">
-        <div class="collection-heading">
-          <div><p class="collection-kicker">COLLECTION 01</p><h3>YouTube Kids</h3></div>
-          <p>Grid riêng cho các video animation, kids content hoặc family-friendly YouTube mà bạn muốn đẩy thành một nhóm nổi bật.</p>
-        </div>
-        <div class="collection-grid" id="youtube-kids-grid"></div>
-      </div>
-
-      <div class="portfolio-collection" id="reelshort-ads-collection">
-        <div class="collection-heading">
-          <div><p class="collection-kicker">COLLECTION 02</p><h3>Reelshort Ads</h3></div>
-          <p>Grid riêng cho short ads / vertical ads / creative ads dạng Reelshort, tách khỏi nhóm portfolio giáo dục và social hiện tại.</p>
-        </div>
-        <div class="collection-grid" id="reelshort-ads-grid"></div>
-      </div>
-
-      <p class="data-note">Portfolio được quản lý bằng <code>data/portfolio.json</code>. Với 2 collection mới, chỉ cần thêm một item có <code>collection</code> phù hợp — giao diện sẽ tự đưa video vào đúng grid.</p>
+      <p class="data-note">Mỗi collection là một khu vực độc lập trong Section 03. Bạn có thể tự thêm hình/video vào <code>assets/</code> và gắn item trong <code>data/portfolio.json</code> để nội dung xuất hiện đúng khu vực.</p>
     </section>
 
     <section id="strengths" class="section reveal">
