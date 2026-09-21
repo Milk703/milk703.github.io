@@ -111,11 +111,11 @@ function mediaFor(item){
 const collections=[
   {key:'documentary',label:'Documentary',number:'01',description:'Video kể chuyện, tư liệu, recap, interview và các sản phẩm documentary.'},
   {key:'real-estate',label:'Bất động sản',number:'02',description:'Aerial, property showcase, project story, sales video và nội dung bất động sản.'},
-  {key:'short-drama',label:'Short Drama',number:'03',description:'Drama ngắn, vertical storytelling, diễn xuất và short-form có nhịp kể nhanh.'},
-  {key:'youtube-kids',label:'YouTube Kids',number:'04',description:'Kids content, animation, family-friendly và video YouTube hướng tới trẻ em.'},
-  {key:'reelshort-ads',label:'Reelshort Ads',number:'05',description:'Vertical ads, performance creative, paid social và quảng cáo dạng Reelshort.'},
-  {key:'goldmax-youtube',label:'GoldMax — YouTube',number:'06',description:'Toàn bộ video YouTube GoldMax hiện có trong portfolio, gồm giáo dục, kỹ năng, thương hiệu và hoạt động.'},
-  {key:'goldmax-facebook',label:'GoldMax — Facebook',number:'07',description:'Toàn bộ nội dung Facebook GoldMax hiện có: campaign, visual, assessment video, series và Reels.'}
+  {key:'short-drama',label:'Short',number:'03',description:'Short drama, short-form storytelling, vertical video và các sản phẩm video ngắn.'},
+  {key:'youtube-kids',label:'Youtube Kids',number:'04',description:'Khu vực riêng để bạn tự thêm Kids content, animation và family-friendly YouTube.'},
+  {key:'reelshort-ads',label:'Reelshort Ads',number:'05',description:'Khu vực riêng để bạn tự thêm vertical ads, performance creative và Reelshort Ads.'},
+  {key:'youtube',label:'Youtube',number:'06',description:'Các sản phẩm YouTube GoldMax đã có sẵn — giữ nguyên link video và thumbnail.'},
+  {key:'facebook',label:'Facebook',number:'07',description:'Các sản phẩm Facebook GoldMax đã có sẵn — giữ nguyên link, visual và nội dung.'}
 ];
 
 function cardFor(item,index,collectionLabel){
@@ -125,7 +125,7 @@ function cardFor(item,index,collectionLabel){
       <span class="collection-card-index">${String(index+1).padStart(2,'0')} · ${escapeHtml(item.format || item.category || collectionLabel)}</span>
       <h4>${title}</h4>
       <p>${escapeHtml(item.description || '')}</p>
-      <div class="collection-card-meta"><span>${escapeHtml(item.format || 'Video')}</span><span>${escapeHtml(item.tool || '—')}</span></div>
+      <div class="collection-card-meta"><span>${escapeHtml(item.format || 'Content')}</span><span>${escapeHtml(item.tool || '—')}</span></div>
     </div>`;
   return item.link?`<a class="collection-card" href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener" aria-label="Mở ${title}">${inner}</a>`:`<article class="collection-card">${inner}</article>`;
 }
@@ -142,18 +142,20 @@ function collectionItems(key){
     'short-drama':['short-drama'],
     'youtube-kids':['youtube-kids'],
     'reelshort-ads':['reelshort-ads'],
-    'goldmax-youtube':['goldmax-youtube','youtube'],
-    'goldmax-facebook':['goldmax-facebook','social']
+    youtube:['youtube','goldmax-youtube'],
+    facebook:['facebook','goldmax-facebook']
   };
   const accepted=aliases[key]||[key];
-  return portfolioData.filter(item=>accepted.includes(item.collection)||accepted.includes(item.category));
+  if(key==='youtube') return portfolioData.filter(item=>item.brand==='GoldMax' && (accepted.includes(item.collection) || item.platform==='YouTube'));
+  if(key==='facebook') return portfolioData.filter(item=>item.brand==='GoldMax' && (accepted.includes(item.collection) || item.platform==='Facebook'));
+  return portfolioData.filter(item=>accepted.includes(item.collection));
 }
 
-function renderCollection(collection,index){
+function renderCollection(collection){
   const items=collectionItems(collection.key);
   const cards=items.length
-    ? items.map((item,i)=>collectionCardFor(item,i,collection.label)).join('')
-    : `<div class="collection-empty"><span class="collection-empty-kicker">CONTENT SLOT · ${collection.number}</span><h4>Thêm layer cho ${escapeHtml(collection.label)}</h4><p>Upload video/image vào <code>assets/</code>, sau đó thêm một item với <code>"collection": "${collection.key}"</code> trong <code>data/portfolio.json</code>.</p><div class="collection-empty-chip">Ready for your next project ↗</div></div>`;
+    ? items.map((item,i)=>cardFor(item,i,collection.label)).join('')
+    : `<div class="collection-empty"><span class="collection-empty-kicker">CONTENT SLOT · ${collection.number}</span><h4>Thêm layer vào ${escapeHtml(collection.label)}</h4><p>Upload video/image vào <code>assets/</code>, sau đó thêm item với <code>"collection": "${collection.key}"</code> trong <code>data/portfolio.json</code>.</p><div class="collection-empty-chip">Ready for your next project ↗</div></div>`;
   return `<section class="portfolio-collection portfolio-collection-${collection.key}" id="collection-${collection.key}" data-collection="${collection.key}">
     <div class="collection-heading">
       <div class="collection-title-wrap"><span class="collection-kicker">COLLECTION ${collection.number}</span><h3>${escapeHtml(collection.label)}</h3></div>
@@ -178,15 +180,15 @@ function bindCollectionGlow(){
     });
   });
   if('IntersectionObserver' in window){
-    const sectionObserver=new IntersectionObserver((entries)=>{
+    const sectionObserver=new IntersectionObserver(entries=>{
       entries.forEach(entry=>entry.target.classList.toggle('in-view',entry.isIntersecting));
-    },{threshold:.2});
+    },{threshold:.15});
     $$('.portfolio-collection').forEach(section=>sectionObserver.observe(section));
   }
 }
 
 function revealCollectionCards(){
-  const cards=$('.collection-card');
+  const cards=$$('.collection-card');
   if(!cards.length) return;
   if(reduceMotion){
     cards.forEach(card=>card.classList.add('is-in'));
@@ -206,25 +208,21 @@ function revealCollectionCards(){
 }
 
 function bindCardGlow(){
-  $('.collection-card').forEach(card=>{
+  $$('.collection-card').forEach(card=>{
     card.addEventListener('pointermove',event=>{
       const rect=card.getBoundingClientRect();
       card.style.setProperty('--mx',`${((event.clientX-rect.left)/rect.width)*100}%`);
       card.style.setProperty('--my',`${((event.clientY-rect.top)/rect.height)*100}%`);
     });
-  });
-  if(reduceMotion) return;
-  $('.collection-card').forEach(card=>{
-    card.addEventListener('pointerenter',()=>card.classList.add('is-hot'));
-    card.addEventListener('pointerleave',()=>card.classList.remove('is-hot'));
+    if(!reduceMotion){
+      card.addEventListener('pointerenter',()=>card.classList.add('is-hot'));
+      card.addEventListener('pointerleave',()=>card.classList.remove('is-hot'));
+    }
   });
 }
 
 function renderPortfolio(){
-  if(totalEl){
-    const total=portfolioData.reduce((sum,item)=>sum+(item.collection?1:0),0);
-    totalEl.textContent=String(total||portfolioData.length).padStart(2,'0');
-  }
+  if(totalEl) totalEl.textContent=String(portfolioData.length).padStart(2,'0');
   if(stack) stack.innerHTML=collections.map(renderCollection).join('');
   renderCollectionIndex();
   bindCollectionGlow();
@@ -233,7 +231,6 @@ function renderPortfolio(){
 }
 
 async function loadPortfolio(){
-  if(!stack) return;
   try{
     const response=await fetch('data/portfolio.json',{cache:'no-store'});
     if(!response.ok) throw new Error(`HTTP ${response.status}`);
