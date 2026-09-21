@@ -185,8 +185,28 @@ function bindCollectionGlow(){
   }
 }
 
+function revealCollectionCards(){
+  const cards=$('.collection-card');
+  if(!cards.length) return;
+  if(reduceMotion){
+    cards.forEach(card=>card.classList.add('is-in'));
+    return;
+  }
+  const obs=new IntersectionObserver((entries,observer)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      observer.unobserve(entry.target);
+    });
+  },{threshold:.08});
+  cards.forEach((card,index)=>{
+    card.style.transitionDelay=`${Math.min(index,7)*55}ms`;
+    obs.observe(card);
+  });
+}
+
 function bindCardGlow(){
-  $$('.collection-card').forEach(card=>{
+  $('.collection-card').forEach(card=>{
     card.addEventListener('pointermove',event=>{
       const rect=card.getBoundingClientRect();
       card.style.setProperty('--mx',`${((event.clientX-rect.left)/rect.width)*100}%`);
@@ -194,7 +214,7 @@ function bindCardGlow(){
     });
   });
   if(reduceMotion) return;
-  $$('.collection-card').forEach(card=>{
+  $('.collection-card').forEach(card=>{
     card.addEventListener('pointerenter',()=>card.classList.add('is-hot'));
     card.addEventListener('pointerleave',()=>card.classList.remove('is-hot'));
   });
@@ -209,6 +229,7 @@ function renderPortfolio(){
   renderCollectionIndex();
   bindCollectionGlow();
   bindCardGlow();
+  revealCollectionCards();
 }
 
 async function loadPortfolio(){
