@@ -2,137 +2,105 @@
 
 Portfolio web tĩnh dành cho hồ sơ Content Marketing / Content Creator, triển khai trên GitHub Pages.
 
-## Cấu trúc nội dung
-
-- `index.html` — cấu trúc và nội dung giao diện.
-- `style.css` — giao diện responsive, typography, hover/tilt, reveal, theme và hiệu ứng ánh sáng.
-- `script.js` — menu mobile, theme toggle, scroll UI và hệ thống render portfolio theo collection.
-- `data/portfolio.json` — danh sách tác phẩm. Mỗi tác phẩm được gắn vào đúng collection.
-- `assets/` — hình ảnh, video và icon.
-
 ## Section 03 / Dự án & Sản phẩm nội dung
 
-Portfolio được tách thành các **collection độc lập**, lấy cảm hứng từ kiểu trình bày portfolio video có từng khối lớn riêng:
+Section 03 được chia thành các **collection / grid độc lập**, theo đúng hướng portfolio video-editor:
 
 1. Documentary
 2. Bất động sản
 3. Short Drama
 4. YouTube Kids
 5. Reelshort Ads
-6. YouTube
-7. Social / Campaign
+6. GoldMax — YouTube
+7. GoldMax — Facebook
 
-Mỗi collection có:
-- tiêu đề riêng
-- số lượng project riêng
-- grid riêng
-- vùng trạng thái trống riêng khi chưa có project
-- hiệu ứng glow khi đưa chuột vào
-- hiệu ứng nổi/lift khi hover
-- ánh sáng chạy theo vị trí chuột
-- reveal khi collection/card xuất hiện trong viewport
+### GoldMax đã được khôi phục
 
-## Cách thêm layer vào từng collection
+Toàn bộ **17 sản phẩm/liên kết GoldMax** trước đó đã được đưa trở lại:
 
-Bạn không cần sửa HTML thủ công.
+- **10 video YouTube**
+  - Topic 37: Appearance
+  - Topic 11: Shopping / Mua Sắm
+  - Topic 31: Health Problems
+  - Kỹ Năng Giao Tiếp – Ứng Xử
+  - Happy Birthday GoldMax English – 15 Years
+  - Test Online – GoldMax English
+  - Highlight trường tiểu học
+  - Kỹ năng sống – Nội dung nổi bật
+  - Video nổi bật – GoldMax English
+  - Video nổi bật – GoldMax Bắc Giang
 
-Chỉ cần upload video/image vào `assets/`, sau đó thêm một object vào `data/portfolio.json` với đúng giá trị `collection`.
+- **7 sản phẩm/link Facebook**
+  - Rising Stars – Cuộc thi thuyết trình đỉnh cao
+  - Ưu đãi khóa học GoldMax
+  - Recap hoạt động & sự kiện
+  - Series từ vựng tiếng Anh
+  - Bài kiểm tra định kỳ – Video
+  - Series từ vựng – Nội dung Facebook
+  - Reels từ vựng tiếng Anh
 
-### Documentary
+Mỗi collection có grid riêng. Các collection Documentary, Bất động sản, Short Drama, YouTube Kids và Reelshort Ads hiện là **khu vực trống sẵn sàng để thêm project mới**, không gộp chung vào GoldMax.
+
+## Cấu trúc dữ liệu
+
+- `index.html` — markup giao diện.
+- `style.css` — layout, responsive, hover lift và glow.
+- `script.js` — render collection/card và hiệu ứng tương tác.
+- `data/portfolio.json` — dữ liệu project.
+- `assets/` — media.
+
+Mỗi project dùng trường `collection` để website tự đưa nội dung vào đúng grid.
+
+Ví dụ:
 
 ```json
-{
-  "title": "Tên documentary",
-  "category": "Documentary",
-  "platform": "YouTube",
-  "format": "Documentary",
-  "tool": "Premiere · After Effects",
-  "description": "Mô tả ngắn về nội dung và vai trò.",
-  "type": "youtube",
-  "collection": "documentary",
-  "youtubeId": "VIDEO_ID",
-  "link": "https://www.youtube.com/watch?v=VIDEO_ID"
-}
+"collection": "documentary"
 ```
-
-### Bất động sản
 
 ```json
-{
-  "title": "Tên video bất động sản",
-  "category": "Bất động sản",
-  "platform": "YouTube",
-  "format": "Real Estate Video",
-  "tool": "Premiere · After Effects",
-  "description": "Mô tả ngắn.",
-  "type": "youtube",
-  "collection": "real-estate",
-  "youtubeId": "VIDEO_ID",
-  "link": "https://www.youtube.com/watch?v=VIDEO_ID"
-}
+"collection": "real-estate"
 ```
-
-### Short Drama
-
-Dùng:
 
 ```json
 "collection": "short-drama"
 ```
 
-### YouTube Kids
-
-Dùng:
-
 ```json
 "collection": "youtube-kids"
 ```
-
-### Reelshort Ads
-
-Dùng:
 
 ```json
 "collection": "reelshort-ads"
 ```
 
-### YouTube
-
-Dùng:
-
 ```json
-"collection": "youtube"
+"collection": "goldmax-youtube"
 ```
 
-### Social / Campaign
-
-Dùng:
-
 ```json
-"collection": "social"
+"collection": "goldmax-facebook"
 ```
 
-## Hiệu ứng Section 03
+## Hiệu ứng
 
-Mỗi collection hoạt động như một khối portfolio riêng. Khi scroll tới collection, khối có ánh sáng nền nhẹ. Khi hover:
+Mỗi collection được thiết kế như một khối portfolio riêng:
 
-- border chuyển sang accent vàng
-- shadow mở rộng
-- toàn khối nhấc lên nhẹ
-- radial glow bám theo vị trí con trỏ
-- card bên trong cũng có hover lift và thumbnail zoom
+- nền tối riêng trong Section 03
+- viền vàng accent
+- glow chạy theo vị trí chuột
+- nổi nhẹ khi hover
+- shadow mở rộng khi hover
+- thumbnail zoom
+- card bên trong cũng có hover lift
+- reveal animation khi scroll tới
 
-Thiết kế này cố tình giữ tinh thần reference video-editor portfolio nhưng vẫn dùng hệ màu hiện tại của portfolio Phan Nhật Tuấn.
+Thiết kế tham khảo tinh thần portfolio video-editor mà bạn gửi, nhưng giữ hệ nhận diện hiện tại của portfolio Phan Nhật Tuấn.
 
-## Cập nhật tác phẩm
+## Cập nhật project
 
-1. Upload asset vào `assets/` nếu cần.
+1. Upload asset vào `assets/`.
 2. Thêm object vào `data/portfolio.json`.
-3. Gắn đúng `collection`.
+3. Chọn đúng `collection`.
 4. Commit lên `main`.
 
-GitHub Pages sẽ triển khai phiên bản mới theo cấu hình của repository.
-
-## Lưu ý
-
-Đây là website tĩnh. Không có chức năng public để khách truy cập tự ghi file vào GitHub. Việc thêm layer/project được thực hiện từ repository thông qua `assets/` và `data/portfolio.json`.
+Không cần sửa HTML để thêm project mới.
