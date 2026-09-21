@@ -8,10 +8,9 @@ Section 03 được chia thành các **collection / grid độc lập**, theo đ
 
 1. Documentary
 2. Bất động sản
-3. Short
-4. YouTube Kids
-5. GoldMax — YouTube
-6. GoldMax — Facebook
+3. Short / Drama Ads
+4. GoldMax — YouTube
+5. GoldMax — Facebook
 
 ### GoldMax đã được khôi phục
 
@@ -40,9 +39,11 @@ Toàn bộ **17 sản phẩm/liên kết GoldMax** trước đó đã được �
 
 ### YouTube Shorts
 
-Mục **Short** hiện chứa 5 video YouTube Shorts mới được thêm trực tiếp từ các link đã cung cấp.
+Mục **Short / Drama Ads** hiện chứa 5 video YouTube Shorts, với mô tả tập trung vào pacing, rhythm, hook, retention và timing.
 
-Mỗi collection có grid riêng. Các collection Documentary, Bất động sản và YouTube Kids hiện là **khu vực trống sẵn sàng để thêm project mới**, không gộp chung vào GoldMax.
+Mục **Documentary** có thêm 2 video YouTube Shorts mới.
+
+Các nhóm được tách riêng để người xem dễ theo dõi từng hướng dựng và nội dung.
 
 ## Cấu trúc dữ liệu
 
@@ -68,9 +69,6 @@ Ví dụ:
 "collection": "short-drama"
 ```
 
-```json
-"collection": "youtube-kids"
-```
 
 ```json
 "collection": "goldmax-youtube"
