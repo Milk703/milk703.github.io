@@ -1,6 +1,66 @@
 {
   "works": [
     {
+      "title": "YouTube Short #01",
+      "category": "Short",
+      "platform": "YouTube",
+      "format": "YouTube Short",
+      "tool": "Video Editing · Content",
+      "description": "Short-form video được chọn vào portfolio, tập trung thể hiện khả năng triển khai nội dung dọc và nhịp dựng.",
+      "type": "youtube",
+      "collection": "short-drama",
+      "youtubeId": "-cOA6oVrovI",
+      "link": "https://youtube.com/shorts/-cOA6oVrovI?feature=share"
+    },
+    {
+      "title": "YouTube Short #02",
+      "category": "Short",
+      "platform": "YouTube",
+      "format": "YouTube Short",
+      "tool": "Video Editing · Content",
+      "description": "Short-form video được chọn vào portfolio, tập trung thể hiện khả năng triển khai nội dung dọc và nhịp dựng.",
+      "type": "youtube",
+      "collection": "short-drama",
+      "youtubeId": "UhOys4IsVJA",
+      "link": "https://youtube.com/shorts/UhOys4IsVJA?feature=share"
+    },
+    {
+      "title": "YouTube Short #03",
+      "category": "Short",
+      "platform": "YouTube",
+      "format": "YouTube Short",
+      "tool": "Video Editing · Content",
+      "description": "Short-form video được chọn vào portfolio, tập trung thể hiện khả năng triển khai nội dung dọc và nhịp dựng.",
+      "type": "youtube",
+      "collection": "short-drama",
+      "youtubeId": "xMlYbvwVV9w",
+      "link": "https://youtube.com/shorts/xMlYbvwVV9w?feature=share"
+    },
+    {
+      "title": "YouTube Short #04",
+      "category": "Short",
+      "platform": "YouTube",
+      "format": "YouTube Short",
+      "tool": "Video Editing · Content",
+      "description": "Short-form video được chọn vào portfolio, tập trung thể hiện khả năng triển khai nội dung dọc và nhịp dựng.",
+      "type": "youtube",
+      "collection": "short-drama",
+      "youtubeId": "fzWjnD4exCw",
+      "link": "https://youtube.com/shorts/fzWjnD4exCw?feature=share"
+    },
+    {
+      "title": "YouTube Short #05",
+      "category": "Short",
+      "platform": "YouTube",
+      "format": "YouTube Short",
+      "tool": "Video Editing · Content",
+      "description": "Short-form video được chọn vào portfolio, tập trung thể hiện khả năng triển khai nội dung dọc và nhịp dựng.",
+      "type": "youtube",
+      "collection": "short-drama",
+      "youtubeId": "Q4xEfUls0eM",
+      "link": "https://youtube.com/shorts/Q4xEfUls0eM?feature=share"
+    },
+    {
       "title": "Rising Stars – Cuộc thi thuyết trình đỉnh cao",
       "category": "GoldMax — Facebook",
       "platform": "Facebook",
