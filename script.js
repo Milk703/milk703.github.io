@@ -151,7 +151,7 @@ function renderCollection(collection){
   const items=collectionItems(collection.key);
   const cards=items.length
     ? items.map((item,i)=>cardFor(item,i,collection.label)).join('')
-    : `<div class="collection-empty"><span class="collection-empty-kicker">CONTENT SLOT · ${collection.number}</span><h4>Thêm layer vào ${escapeHtml(collection.label)}</h4><p>Upload video/image vào <code>assets/</code>, sau đó thêm item với <code>"collection": "${collection.key}"</code> trong <code>data/portfolio.json</code>.</p><div class="collection-empty-chip">Ready for your next project ↗</div></div>`;
+    : `<div class="collection-empty"><span class="collection-empty-kicker">CONTENT · ${collection.number}</span><h4>${escapeHtml(collection.label)}</h4><p>Một khoảng trống dành cho những sản phẩm tiếp theo.</p><div class="collection-empty-chip">More work coming ↗</div></div>`;
   return `<section class="portfolio-collection portfolio-collection-${collection.key}" id="collection-${collection.key}" data-collection="${collection.key}">
     <div class="collection-heading">
       <div class="collection-title-wrap"><span class="collection-kicker">COLLECTION ${collection.number}</span><h3>${escapeHtml(collection.label)}</h3></div>
