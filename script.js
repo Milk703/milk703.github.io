@@ -109,13 +109,13 @@ function mediaFor(item){
 }
 
 const collections=[
-  {key:'documentary',label:'Documentary',number:'01',description:'Video kể chuyện, tư liệu, recap, interview hoặc long-form documentary.'},
-  {key:'real-estate',label:'Bất động sản',number:'02',description:'Video bất động sản, aerial, property showcase, project story và sales content.'},
-  {key:'short-drama',label:'Short Drama',number:'03',description:'Nội dung drama ngắn, storytelling dọc, short-form diễn xuất và các concept có nhịp kể nhanh.'},
-  {key:'youtube-kids',label:'YouTube Kids',number:'04',description:'Khu vực riêng cho Kids content, animation, family-friendly và video YouTube hướng tới trẻ em.'},
-  {key:'reelshort-ads',label:'Reelshort Ads',number:'05',description:'Khu vực riêng cho vertical ads, performance creative và quảng cáo dạng Reelshort.'},
-  {key:'youtube',label:'YouTube',number:'06',description:'Video YouTube hiện có: giáo dục, thương hiệu, hoạt động và nội dung theo chủ đề.'},
-  {key:'social',label:'Social / Campaign',number:'07',description:'Social content, campaign, event recap và visual content đã triển khai.'}
+  {key:'documentary',label:'Documentary',number:'01',description:'Video kể chuyện, tư liệu, recap, interview và các sản phẩm documentary.'},
+  {key:'real-estate',label:'Bất động sản',number:'02',description:'Aerial, property showcase, project story, sales video và nội dung bất động sản.'},
+  {key:'short-drama',label:'Short Drama',number:'03',description:'Drama ngắn, vertical storytelling, diễn xuất và short-form có nhịp kể nhanh.'},
+  {key:'youtube-kids',label:'YouTube Kids',number:'04',description:'Kids content, animation, family-friendly và video YouTube hướng tới trẻ em.'},
+  {key:'reelshort-ads',label:'Reelshort Ads',number:'05',description:'Vertical ads, performance creative, paid social và quảng cáo dạng Reelshort.'},
+  {key:'goldmax-youtube',label:'GoldMax — YouTube',number:'06',description:'Toàn bộ video YouTube GoldMax hiện có trong portfolio, gồm giáo dục, kỹ năng, thương hiệu và hoạt động.'},
+  {key:'goldmax-facebook',label:'GoldMax — Facebook',number:'07',description:'Toàn bộ nội dung Facebook GoldMax hiện có: campaign, visual, assessment video, series và Reels.'}
 ];
 
 function cardFor(item,index,collectionLabel){
@@ -136,16 +136,16 @@ const totalEl=$('#work-total');
 let portfolioData=[];
 
 function collectionItems(key){
-  const legacyMap={
-    'short-drama':['short-drama','short-form'],
-    'social':['social','social-campaign'],
-    'youtube':['youtube'],
-    'documentary':['documentary'],
+  const aliases={
+    documentary:['documentary'],
     'real-estate':['real-estate'],
+    'short-drama':['short-drama'],
     'youtube-kids':['youtube-kids'],
-    'reelshort-ads':['reelshort-ads']
+    'reelshort-ads':['reelshort-ads'],
+    'goldmax-youtube':['goldmax-youtube','youtube'],
+    'goldmax-facebook':['goldmax-facebook','social']
   };
-  const accepted=legacyMap[key]||[key];
+  const accepted=aliases[key]||[key];
   return portfolioData.filter(item=>accepted.includes(item.collection)||accepted.includes(item.category));
 }
 
