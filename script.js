@@ -113,9 +113,8 @@ const collections=[
   {key:'real-estate',label:'Bất động sản',number:'02',description:'Aerial, property showcase, project story, sales video và nội dung bất động sản.'},
   {key:'short-drama',label:'Short',number:'03',description:'Short drama, short-form storytelling, vertical video và các sản phẩm video ngắn.'},
   {key:'youtube-kids',label:'Youtube Kids',number:'04',description:'Khu vực riêng để bạn tự thêm Kids content, animation và family-friendly YouTube.'},
-  {key:'reelshort-ads',label:'Reelshort Ads',number:'05',description:'Khu vực riêng để bạn tự thêm vertical ads, performance creative và Reelshort Ads.'},
-  {key:'youtube',label:'Youtube',number:'06',description:'Các sản phẩm YouTube GoldMax đã có sẵn — giữ nguyên link video và thumbnail.'},
-  {key:'facebook',label:'Facebook',number:'07',description:'Các sản phẩm Facebook GoldMax đã có sẵn — giữ nguyên link, visual và nội dung.'}
+  {key:'youtube',label:'Youtube',number:'05',description:'Các sản phẩm YouTube GoldMax đã có sẵn — giữ nguyên link video và thumbnail.'},
+  {key:'facebook',label:'Facebook',number:'06',description:'Các sản phẩm Facebook GoldMax đã có sẵn — giữ nguyên link, visual và nội dung.'}
 ];
 
 function cardFor(item,index,collectionLabel){
@@ -141,7 +140,6 @@ function collectionItems(key){
     'real-estate':['real-estate'],
     'short-drama':['short-drama'],
     'youtube-kids':['youtube-kids'],
-    'reelshort-ads':['reelshort-ads'],
     youtube:['youtube','goldmax-youtube'],
     facebook:['facebook','goldmax-facebook']
   };
