@@ -8,11 +8,10 @@ Section 03 được chia thành các **collection / grid độc lập**, theo đ
 
 1. Documentary
 2. Bất động sản
-3. Short Drama
+3. Short
 4. YouTube Kids
-5. Reelshort Ads
-6. GoldMax — YouTube
-7. GoldMax — Facebook
+5. GoldMax — YouTube
+6. GoldMax — Facebook
 
 ### GoldMax đã được khôi phục
 
@@ -39,7 +38,11 @@ Toàn bộ **17 sản phẩm/liên kết GoldMax** trước đó đã được �
   - Series từ vựng – Nội dung Facebook
   - Reels từ vựng tiếng Anh
 
-Mỗi collection có grid riêng. Các collection Documentary, Bất động sản, Short Drama, YouTube Kids và Reelshort Ads hiện là **khu vực trống sẵn sàng để thêm project mới**, không gộp chung vào GoldMax.
+### YouTube Shorts
+
+Mục **Short** hiện chứa 5 video YouTube Shorts mới được thêm trực tiếp từ các link đã cung cấp.
+
+Mỗi collection có grid riêng. Các collection Documentary, Bất động sản và YouTube Kids hiện là **khu vực trống sẵn sàng để thêm project mới**, không gộp chung vào GoldMax.
 
 ## Cấu trúc dữ liệu
 
@@ -67,10 +70,6 @@ Ví dụ:
 
 ```json
 "collection": "youtube-kids"
-```
-
-```json
-"collection": "reelshort-ads"
 ```
 
 ```json
