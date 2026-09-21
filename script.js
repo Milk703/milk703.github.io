@@ -112,8 +112,8 @@ const collections=[
   {key:'documentary',label:'Documentary',number:'01',description:'Documentary, story-driven short, recap và các sản phẩm kể chuyện bằng hình ảnh.'},
   {key:'real-estate',label:'Bất động sản',number:'02',description:'Property showcase, project video, vertical real estate ads và nội dung bất động sản.'},
   {key:'short-drama',label:'Short',number:'03',description:'Drama ads, short-form storytelling, vertical video và các sản phẩm video ngắn.'},
-  {key:'youtube',label:'Youtube',number:'04',description:'Các sản phẩm YouTube GoldMax đã có sẵn — giữ nguyên link video và thumbnail.'},
-  {key:'facebook',label:'Facebook',number:'05',description:'Các sản phẩm Facebook GoldMax đã có sẵn — giữ nguyên link, visual và nội dung.'}
+  {key:'youtube',label:'Youtube',number:'04',description:'Video giáo dục, kỹ năng sống và nội dung theo chủ đề, từ xây dựng format đến dựng và hoàn thiện cho kênh.'},
+  {key:'facebook',label:'Facebook',number:'05',description:'Nội dung social gồm campaign, visual, video và các hoạt động thương hiệu được triển khai theo từng mục tiêu.'}
 ];
 
 function cardFor(item,index,collectionLabel){
