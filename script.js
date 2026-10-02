@@ -115,7 +115,8 @@ const collections=[
   {key:'real-estate',label:'Bất động sản',number:'02',description:'Property showcase, project video, vertical real estate ads và nội dung bất động sản.'},
   {key:'short-drama',label:'Short',number:'03',description:'Drama ads, short-form storytelling, vertical video và các sản phẩm video ngắn.'},
   {key:'youtube',label:'Youtube',number:'04',description:'Video giáo dục, kỹ năng sống và nội dung theo chủ đề, từ xây dựng format đến dựng và hoàn thiện cho kênh.'},
-  {key:'facebook',label:'Facebook',number:'05',description:'Nội dung social gồm campaign, visual, video và các hoạt động thương hiệu được triển khai theo từng mục tiêu.'}
+  {key:'facebook',label:'Facebook',number:'05',description:'Nội dung social gồm campaign, visual, video và các hoạt động thương hiệu được triển khai theo từng mục tiêu.'},
+  {key:'short-commercial',label:'Short-form Ads',number:'06',description:'Video quảng cáo ngắn theo phong cách TikTok Shop, Amazon và social commerce, tập trung vào hook, sản phẩm và chuyển đổi.'}
 ];
 
 function cardFor(item,index,collectionLabel){
@@ -141,7 +142,8 @@ function collectionItems(key){
     'real-estate':['real-estate'],
     'short-drama':['short-drama'],
     youtube:['youtube','goldmax-youtube'],
-    facebook:['facebook','goldmax-facebook']
+    facebook:['facebook','goldmax-facebook'],
+    'short-commercial':['short-commercial']
   };
   const accepted=aliases[key]||[key];
   if(key==='youtube') return portfolioData.filter(item=>item.brand==='GoldMax' && (accepted.includes(item.collection) || item.platform==='YouTube'));
